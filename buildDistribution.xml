@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+        $Id: build.xml 1445 2008-06-10 06:49:15Z mzampare $
+        Ant script to generate an executable Jar file
+-->
+
+<project default="builddist">
+
+	<!-- Definitions -->
+	
+	<property name="src" 		location="src" />
+	<property name="dist" 		location="MDDist" />
+	<property name="lib"		location="lib"/>
+
+	
+	<!-- Clean distribution directory -->
+	
+	<target name="clearing-distribution-dir">
+		<delete dir="${dist}" />
+	</target>
+
+	<!-- Create the distribution directory -->
+	
+	<target name="making-distribution-directory" depends="clearing-distribution-dir">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${dist}/lib" />
+		<mkdir dir="${dist}/lib/xsl" />
+		<mkdir dir="${dist}/lib/xsl2" />
+		<mkdir dir="${dist}/plugins" />
+		<mkdir dir="${dist}/plugins/org.eso.sdd.mbse" />
+		<mkdir dir="${dist}/plugins/org.eso.sdd.mbse/lib" />
+		<mkdir dir="${dist}/data" />
+		<mkdir dir="${dist}/data/defaults" />
+		<mkdir dir="${dist}/data/defaults/data" />
+		<mkdir dir="${dist}/data/defaults/data/diagrams" />		
+		<mkdir dir="${dist}/data/defaults/data/diagrams/FTA Diagram" />		
+		<mkdir dir="${dist}/data" />
+		<mkdir dir="${dist}/data/resourcemanager" />
+		<mkdir dir="${dist}/manual" />
+		<mkdir dir="${dist}/manual/MBDG" />
+		<mkdir dir="${dist}/samples" />
+		<mkdir dir="${dist}/samples/org.eso.sdd.mbse" />
+		<mkdir dir="${dist}/profiles" />
+		<mkdir dir="${dist}/modelLibraries" />
+	</target>
+	
+	<!-- Copy  tool  project files -->
+	
+	<target name="copy-files">
+		<copy todir="${dist}/lib/xsl">
+			<fileset dir="lib/xsl">
+			</fileset>
+		</copy>
+		<copy todir="${dist}/lib/xsl2">
+			<fileset dir="lib/xsl2">
+			</fileset>
+		</copy>
+		<copy todir="${dist}/plugins/org.eso.sdd.mbse/lib">
+			<fileset dir = "lib/">
+			   <include name = "*.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${dist}/manual">
+			<fileset dir = "doc">
+			</fileset>
+		</copy>
+		<copy todir="${dist}/profiles">
+			<fileset dir = "profiles">
+			</fileset>
+		</copy>
+		<copy todir="${dist}/modelLibraries">
+			<fileset dir = "modelLibraries">
+			</fileset>
+		</copy>
+		<copy todir="${dist}/samples/org.eso.sdd.mbse">
+			<fileset dir = "samples">
+			</fileset>
+		</copy>
+		<copy file = "MBSEPlugin.jar" todir="${dist}/plugins/org.eso.sdd.mbse"></copy>
+		<copy file = "ReleaseNotes.txt" todir="${dist}/plugins/org.eso.sdd.mbse"></copy>
+		<copy file = "plugin.xml" todir="${dist}/plugins/org.eso.sdd.mbse"></copy>
+		<copy file = "MDR_Plugin_MBSE_Plugin_73858_descriptor.xml" todir="${dist}/data/resourcemanager"></copy>
+		<copy file = "FTADiagram-descriptor.xml" tofile="${dist}/data/defaults/data/diagrams/FTA Diagram/descriptor.xml"></copy>
+	</target>
+		
+	<target name = "zip">
+		<zip destfile="MBSEPlugin.zip" basedir="${dist}"/>
+	</target>
+		
+	<target name="builddist"
+				depends	="
+				making-distribution-directory,    		
+				copy-files,
+				zip">
+	</target>
+</project>	    		

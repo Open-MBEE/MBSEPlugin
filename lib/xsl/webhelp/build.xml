@@ -1,0 +1,142 @@
+<project default="help" name="mainbuild">
+
+  <dirname property="ant.file.dir" file="${ant.file}"/>
+  <dirname property="xml.file.dir" file="${xml.file}"/>
+  <property name="webhelp.stylesheet" value="${ant.file.dir}/xsl/webhelp.xsl"/>
+  <property name="webhelp.include.search.tab" value="true"/>
+  <property name="extensions.dir" value="${ant.file.dir}/../extensions"/>
+  
+  <path id="classpath">
+    <!--OXYGEN PATCH for EXM-19733-->              
+    <pathelement path="${java.class.path}"/>
+    <pathelement location="${extensions.dir}/webhelpindexer.jar"/>
+    <pathelement location="${extensions.dir}/lucene-analyzers-3.0.0.jar"/>
+    <pathelement location="${extensions.dir}/lucene-core-3.0.0.jar"/>
+  </path>
+
+  <condition property="do-search-indexing">
+    <equals arg1="${webhelp.include.search.tab}" arg2="true"/>
+  </condition>
+
+  <target name="chunk" depends="clean">
+    <mkdir dir="${webhelp.base.dir}"/>
+    <property name="xincluded-profiled.xml" value="${webhelp.base.dir}/xincluded-profiled.xml"/>
+    <property name="dummy.html" value="${webhelp.base.dir}/dummy.html"/>
+
+    <xslt
+      in="${xml.file}"
+      out="${xincluded-profiled.xml}"
+      style="../profiling/profile.xsl"
+      classpath="${classpath}">
+      <!--OXYGEN PATCH for EXM-19733-->	
+		  <xmlcatalog>
+			  <catalogpath><pathelement location="${ant.file.dir}/../../catalog.xml"/></catalogpath>
+		  </xmlcatalog>
+      <sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration"
+           value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+      <param name="profile.arch" expression="${profile.arch}" if="profile.arch"/>
+      <param name="profile.audience" expression="${profile.audience}" if="profile.audience"/>
+      <param name="profile.condition" expression="${profile.condition}" if="profile.condition"/>
+      <param name="profile.conformance" expression="${profile.conformance}" if="profile.conformance"/>
+      <param name="profile.lang" expression="${profile.lang}" if="profile.lang"/>
+      <param name="profile.os" expression="${profile.os}" if="profile.os"/>
+      <param name="profile.revision" expression="${profile.revision}" if="profile.revision"/>
+      <param name="profile.revisionflag" expression="${profile.revisionflag}" if="profile.revisionflag"/>
+      <param name="profile.role" expression="${profile.role}" if="profile.role"/>
+      <param name="profile.security" expression="${profile.security}" if="profile.security"/>
+      <param name="profile.status" expression="${profile.status}" if="profile.status"/>
+      <param name="profile.userlevel" expression="${profile.userlevel}" if="profile.userlevel"/>
+      <param name="profile.vendor" expression="${profile.vendor}" if="profile.vendor"/>
+      <param name="profile.wordsize" expression="${profile.wordsize}" if="profile.wordsize"/>
+      <param name="profile.attribute" expression="${profile.attribute}" if="profile.attribute"/>
+      <param name="profile.value" expression="${profile.value}" if="profile.value"/>
+    </xslt>
+
+    <xslt
+      in="${xincluded-profiled.xml}"
+      out="${dummy.html}"
+      style="${webhelp.stylesheet}"
+      scanincludeddirectories="false"
+      classpath="${classpath}">
+      <!--OXYGEN PATCH for EXM-19733-->
+  		<xmlcatalog>
+  			<catalogpath><pathelement location="${ant.file.dir}/../../catalog.xml"/></catalogpath>
+  		</xmlcatalog>
+      <param name="webhelp.base.dir" expression="${webhelp.base.dir}" if="webhelp.base.dir"/>
+      <param name="chunker.output.encoding" expression="${chunker.output.encoding}"
+        if="chunker.output.encoding"/>
+      <param name="webhelp.include.search.tab" expression="${webhelp.include.search.tab}"
+        if="webhelp.include.search.tab"/>
+      <param name="webhelp.indexer.language" expression="${webhelp.indexer.language}" 
+        if="webhelp.indexer.language"/>
+    </xslt>
+  
+    <delete file="${dummy.html}"/>
+    <delete file="${xincluded-profiled.xml}"/>
+
+    <!-- copy common content such as js files of tree, css etc. to template folder. They will be copied to doc folder. They are NOT page specific! -->
+    <copy todir="${webhelp.base.dir}">
+      <fileset dir="${ant.file.dir}/template">
+        <include name="**/*"/>
+        <exclude name="**/content/search/**"/>
+      </fileset>
+    </copy>
+
+    <!-- Very simple-minded copy to handle the source document's images -->
+    <!-- TODO: Look at html help code that produces a manifest file...list of images -->
+    <!--       Customize webhelp.xsl to produce ant file to copy images actually used? --> 
+    <property name="input-images-basedir" value=""/>
+    <copy todir="${webhelp.base.dir}/content/${input-images-basedir}" failonerror="false">
+      <fileset dir="${xml.file.dir}/${input-images-basedir}" includes="**/*" />
+    </copy>
+    
+  </target>
+
+
+  <target name="index" if="do-search-indexing">
+    <copy todir="${webhelp.base.dir}">
+      <fileset dir="${ant.file.dir}/template">
+      <include name="**/*"/>
+      <exclude name="**/content/search/*.props"/>
+      <exclude name="**/content/search/stemmers/*"/>
+      </fileset>
+    </copy>
+    <!-- We separate this out so we only copy the stopwords list and stemmer for the indexer language -->
+    <copy todir="${webhelp.base.dir}">
+      <fileset dir="${ant.file.dir}/template">
+      <include name="**/content/search/default.props"/>
+      <include name="**/content/search/punctuation.props"/>
+      <include name="**/content/search/${webhelp.indexer.language}*.props"/>
+      <include name="**/content/search/stemmers/${webhelp.indexer.language}_stemmer.js"/>
+      </fileset>
+    </copy>
+ 
+    <taskdef name="indexertask" classname="com.nexwave.nquindexer.IndexerTask">
+      <classpath refid="classpath"/>
+    </taskdef>
+
+    <echo>Indexing html files in ${webhelp.base.dir}/content</echo>
+    <indexertask htmldir="${webhelp.base.dir}/content" indexerLanguage="${webhelp.indexer.language}"/>
+    <delete>
+      <fileset dir="${webhelp.base.dir}/content/search" includes="*.props"/>
+    </delete>
+  </target>
+
+
+  <target name="webhelp" depends="chunk, index"/>
+
+
+  <target name="clean">
+    <delete dir="${webhelp.base.dir}"/>
+  </target>
+
+
+  <target name="help">
+    <echo>
+Usage:
+webhelp:       Generates the document in webhelp format and indexes the content.
+clean:         Deletes webhelp output directory.
+index:         Indexes the content.
+    </echo>
+  </target>
+</project>

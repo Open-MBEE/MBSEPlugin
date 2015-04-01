@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+<info>
+<subtitle>Systems Reasoner User Manual</subtitle>
+<productnumber>1</productnumber>
+<pubdate>1</pubdate>
+<issuenum>1</issuenum><author role="author">
+<personname><firstname>Chakajkla</firstname>
+<surname>Jesdabodi</surname>
+</personname>
+<affiliation><orgname>TUM</orgname></affiliation>
+</author>
+</info>
+<chapter xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Introduction" >
+   <title>Introduction</title>
+<para annotations="paragraph-no-html">
+Reasoner component is a subpart of the MBSE plugin as described in the MBDG Documentation. Reasoner component is used for applying a reasoner pattern for getting the total cost, mass or power consumption of a product structure tree etc. Different type of pattern blocks can be created to suit the calculation needs, the reasoner component then does the work of automatically applying these pattern blocks (generalization) to a single product block or multiple blocks recursively.</para>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Introduction__Purpose">
+<title>Purpose</title>
+<para annotations="paragraph-no-html">
+The reasoner module is used to help modeling easier, faster and less prone to error by providing an automatic wizard for applying a pattern and creating property values. </para>
+</sect1>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Introduction__Scope">
+<title>Scope</title>
+        <para annotations="html converted">      This document is the user manual for a reasoner module of MBSE Plugin.       It also briefly addresses the steps of applying a pattern to a product       tree and how the instance of this tree can be simulated to get a certain       values like total cost, mass or power consumption.    </para>  </sect1>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Introduction__Abbreviations_and_Acronyms">
+<title>Abbreviations and Acronyms</title>
+        <para annotations="html converted">      <emphasis role="bold">MBDG&#160;&#160;&#160;&#160;&#160;&#160;Model Based Document Generation</emphasis>    </para>  </sect1>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Introduction__Copyright">
+<title>Copyright</title>
+        <para annotations="html converted">      The software described in this document is subject to the following       copyright statement:    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * (c) INCOSE SE2 Challenge Team for Telescope Modeling 2011    </para>    <para annotations="html converted">      * Copyright by ESO, HOOD, TUM, oose, GfSE    </para>    <para annotations="html converted">      * All rights reserved    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is free software; you can redistribute it and/or    </para>    <para annotations="html converted">      * modify it under the terms of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License as published by the Free Software Foundation; either    </para>    <para annotations="html converted">      * version 2.1 of the License, or (at your option) any later version.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is distributed in the hope that it will be useful,    </para>    <para annotations="html converted">      * but WITHOUT ANY WARRANTY; without even the implied warranty of    </para>    <para annotations="html converted">      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU    </para>    <para annotations="html converted">      * Lesser General Public License for more details.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * You should have received a copy of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License along with this library; if not, write to the Free Software    </para>    <para annotations="html converted">      * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>  </sect1>
+</chapter>
+<chapter xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Overview" >
+   <title>Overview</title>
+        <para annotations="html converted">      The general usage of the reasoner component is to aid systems engineers       in creating pattern based reasoning. With this component, automatic       generalization and creation of property values can be performed to       reduce modeling time and error.    </para>  </chapter>
+<chapter xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction" >
+   <title>Instruction</title>
+        <para annotations="html converted">      The general steps for using a reasoning pattern are:    </para>    <para annotations="html converted">      1.Create system model (product tree)    </para>    <para annotations="html converted">      2.Create a pattern blocks (Cost,Mass,Power Consumption blocks etc)    </para>    <para annotations="html converted">      3.Apply the pattern blocks to the system model    </para>    <para annotations="html converted">      4.Generate a system model instance and modify as needed    </para>    <para annotations="html converted">      5.Run the simulator to get the results.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The reasoning component is created to aid the user in step 3 of the       process, to automatically apply the pattern blocks recursively,    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      There are two options that can be used in the reasoner component, namely:    </para>    <para annotations="html converted">      1.Apply reasoning pattern    </para>    <para annotations="html converted">      2.Remove reasoning pattern    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      A screenshot below shows how the two actions can be invoked.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      However, there are two other actions &quot;SE2: getCost&quot; and &quot;SE2: get Power&quot;       menu option, this two options are customized to calculate the cost and       power of the product tree directly (by working directly on the default       value of value property).    </para>    <para annotations="html converted">      They expect a value property called <emphasis role="bold">cost</emphasis> resp. <emphasis role="bold">power</emphasis>, and       create a bill of materials (<xref linkend="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__17_0_4_38380511_1334324309234_521682_13288"></xref> ).The user can apply the       pattern and then invoke these actions.    </para>  <figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__17_0_4_3ef80569_1332522601309_614836_20344">
+<title>Invoking Actions</title><mediaobject>
+<imageobject>
+<imagedata fileref="Apply_Menu_Example__17_0_4_3ef80569_1332520167055_994241_19902.png" width="66%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__17_0_4_38380511_1334324309234_521682_13288">
+<title>Cost Rollup</title><mediaobject>
+<imageobject>
+<imagedata fileref="CostRollup__17_0_4_38380511_1334324234825_432067_13279.png" width="66%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Apply_reasoning_pattern">
+<title>Apply reasoning pattern</title>
+<para annotations="paragraph-no-html">
+Applying reasoning pattern can be invoked through "SE2: apply reasoning pattern" command under a block element. Selecting the command will open the systems reasoning wizard as shown the figure below.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Apply_reasoning_pattern__17_0_4_3eee0562_1331980783268_366022_12505">
+<title>Apply Reasoning pattern wizard</title><mediaobject>
+<imageobject>
+<imagedata fileref="Pattern_Wizard_Apply__17_0_4_3ef80569_1332520459897_144461_20083.png" width="66%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+There are 5 options that can be selected:1. Apply the pattern block recursively2. setting the role names of part properties (lowercase of the blockname)3. setting the subsetted properties of part properties4. redefine value properties for the pattern blocks5. create value properties of the pattern blocksMultiple pattern blocks can be selected in dialog, this allows for multiple pattern blocks to be generalized (apply) automatically.</para>
+</sect1>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Remove_reasoning_pattern">
+<title>Remove reasoning pattern</title>
+<para annotations="paragraph-no-html">
+Remove reasoning pattern is a wizard for removing the applied patterns, as well as removing all the created values,subsetted properties, redefined properties etc. An example wizard is shown in the figure below.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Remove_reasoning_pattern__17_0_4_3eee0562_1331981205082_770967_12536">
+<title>Remove reasoner wizard</title><mediaobject>
+<imageobject>
+<imagedata fileref="Remove_Menu_Example__17_0_4_3ef80569_1332521195278_229198_20264.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+Similarly to apply pattern wizard, there are 5 options the user can select either to remove the pattern recursively, with an option to remove the value properties and subsetted properties etc.</para>
+</sect1>
+<sect1 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage">
+<title>Example Usage</title>
+<sect2 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Create_product_model">
+<title>Create product model</title>
+        <para annotations="html converted">      An example of pattern blocks is created in the package System Reasoner       Sample Model. There are 3 pattern blocks created:    </para>    <para annotations="html converted">      1. MassRollupPattern,    </para>    <para annotations="html converted">      2. CostRollupPattern,    </para>    <para annotations="html converted">      3. and a PowerRollupPattern.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      MassRollUpPattern is created for calculating the total mass of the       product tree components, this pattern can be applied to a single block       to get a single block mass, or applied to the blocks under it       recursively to get the entire mass of the product structure subtree.       Similarly for CostRollUpPattern and PowerRollUpPattern, which are used       to calculate the cost and power respectively. A product tree structure       of Laptop is created and shown below.    </para>  <figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Create_product_model__17_0_4_3ef80569_1332522746105_206505_20355">
+<title>Initial Diagram</title><mediaobject>
+<imageobject>
+<imagedata fileref="Model_Example_Before_Apply__17_0_4_3ef80569_1332520459130_832263_20051.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+The 3 patterns must be created in association with a constraint block which defines the logic of the constraints. As shown below the constraints property "sum" is generalized as total constraint block.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Create_product_model__17_0_4_3ef80569_1332523812868_281200_20448">
+<title>Constraints block</title><mediaobject>
+<imageobject>
+<imagedata fileref="Pattern_ConstraintBlock__17_0_4_3ef80569_1332520459518_124265_20067.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+Also each pattern for e.g. CostRollUpPattern, must also contain a SysML parametric diagram which defines the reasoning pattern of the model. This parametric diagram allows for a more flexible way to define any kind of reasoning pattern to the product tree.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Create_product_model__17_0_4_3ef80569_1332524034609_179127_20496">
+<title>SysML Parametric Diagram</title><mediaobject>
+<imageobject>
+<imagedata fileref="Pattern_SysML_ParametricDiagram__17_0_4_3ef80569_1332520459705_544306_20075.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+<sect2 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_the_patterns">
+<title>Applying the patterns</title>
+<para annotations="paragraph-no-html">
+After having created a model tree structure with 3 defined pattern blocks. To apply a single or multiple pattern blocks, you must invoke the "SE2: apply reasoning pattern" command as instructed.An example of multiple selection and single selection menu is shown below, where user can select multiple patterns to be applied at once.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_the_patterns__17_0_4_3ef80569_1332523057112_897649_20374">
+<title>Multiple Pattern</title><mediaobject>
+<imageobject>
+<imagedata fileref="Multiple_Pattern_Apply__17_0_4_3ef80569_1332520459329_125478_20059.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_the_patterns__17_0_4_3ef80569_1332523506390_914549_20395">
+<title>Singel apply</title><mediaobject>
+<imageobject>
+<imagedata fileref="Single_Pattern_Apply__17_0_4_3ef80569_1332520460099_944011_20091.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+After having configured the wizard to apply the pattern block, the resulting product tree will be updated and as shown below. Note that in this example we have selected all the 5 options (apply recursively,redefine roles, subsetted property etc.) and selected only MassRollUpPattern block. It is noticeable on the model that new property values are created, as well as roles names and subsetted properties are added. Most importantly all the blocks under the Laptop block is now a generalization of MassRollUpPattern block.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_the_patterns__17_0_4_3ef80569_1332523230701_440724_20388">
+<title>Model After apply</title><mediaobject>
+<imageobject>
+<imagedata fileref="Model_Example_After_Apply__17_0_4_3ef80569_1332520458896_592967_20043.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+<sect2 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Creating_instance_model_and_simulator">
+<title>Creating instance model and simulator</title>
+<para annotations="paragraph-no-html">
+The next step is to create an instance of this model. We have created the instance in a package "Instance". This package will contain all the instance blocks that will be used for the simulation.It is to be noted that currently  in MD 17.0 redefines are not properly handled when using the Instance wizard but they are supported in 17.0.1. And, that subsets will be supported in future versions of MD. Therefore, the user will be able generate the instance model directly using the wizard.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Creating_instance_model_and_simulator__17_0_4_3ef80569_1332523676748_756565_20419">
+<title>Instance Packge</title><mediaobject>
+<imageobject>
+<imagedata fileref="Instance_Package__17_0_4_3ef80569_1332520458685_184387_20035.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      Having completed the instance model creation, we must now create a       package that contain a simulator that contains    </para>    <para annotations="html converted">      1.Simulation configuration diagram    </para>    <para annotations="html converted">      2.Execution Configurator    </para>    <para annotations="html converted">      With the execution configurator, the user can select the target instance       which he wants to run the simulation against and also select the       resulting instance block where he wants to store the simulation results.       In this example, an Execution Configurator &quot;Simulation Exec Unit&quot; is       created and set target instance and resulting instance to &quot;Laptop&quot;       instance we have created.    </para>  <figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Creating_instance_model_and_simulator__17_0_4_3ef80569_1332524607440_655677_20688">
+<title>Simulator</title><mediaobject>
+<imageobject>
+<imagedata fileref="Execution_Config__17_0_4_3ef80569_1332520169350_763022_19982.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+Next we can run the execution by selecting run menu and set the Execution Configurator to Simulation Exec Unit. Note that multiple Execution Configurator can be created in the diagram. </para>
+<para annotations="paragraph-no-html">
+The figureImage below shows the instance model before the execution, note that the totalCost of Laptop instance is 0. After the execution the totalCost value should reflect the true total cost of the entire instance product structure.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Creating_instance_model_and_simulator__17_0_4_3ef80569_1332524870246_741843_20705">
+<title>Instance before</title><mediaobject>
+<imageobject>
+<imagedata fileref="Instance_Example_Before_Cost__17_0_4_3ef80569_1332520169962_199762_20006.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Creating_instance_model_and_simulator__17_0_4_3ef80569_1332524919868_331722_20719">
+<title>After</title><mediaobject>
+<imageobject>
+<imagedata fileref="Instance_Example_After_Cost__17_0_4_3ef80569_1332520169523_44010_19990.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+<sect2 xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_multiple_patterns">
+<title>Applying multiple patterns</title>
+<para annotations="paragraph-no-html">
+Multiple pattern blocks can be applied simultaneously through multiple selection dialog. An example of the product model after multiple blocks are applied is shown below. In this example both CostRollUpPattern and MassRollUpPattern is applied to Laptop block recursively.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_multiple_patterns__17_0_4_3ef80569_1332525127489_772132_20741">
+<title>Multiple apply</title><mediaobject>
+<imageobject>
+<imagedata fileref="Apply_Multiple_Pattern__17_0_4_3ef80569_1332520169145_199630_19974.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+Similarly, the instance models must then be created to reflect the apply changes.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_multiple_patterns__17_0_4_3ef80569_1332525217251_65884_20753">
+<title>Multiple instance</title><mediaobject>
+<imageobject>
+<imagedata fileref="Instance_Example_Before_Multiple__17_0_4_3ef80569_1332520167476_192244_19910.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+Running the same Execution Configurator this time, will produce two results' total mass and cost of the laptop.</para>
+<figure annotations="figureimage" xml:id="Reasoner_Documentation__Systems_Reasoner_User_Manual__Instruction__Example_Usage__Applying_multiple_patterns__17_0_4_3ef80569_1332525290396_80284_20767">
+<title>After multiple</title><mediaobject>
+<imageobject>
+<imagedata fileref="Instance_Example_After_Multiple__17_0_4_3ef80569_1332520169738_865884_19998.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+</sect1>
+</chapter>
+</book>

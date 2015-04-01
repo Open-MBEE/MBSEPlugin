@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+        $Id: buildPlugin.xml 331 2011-12-16 10:19:06Z rkarban $
+        Ant script to generate an executable Jar file
+-->
+
+<project default="exec-jarfile">
+
+	<!-- Definitions -->
+	
+	<property name="src" 		location="src" />
+	<property name="dist" 		location="dist" />
+
+	
+	<!-- Name of Jar file created -->
+	
+	<!-- server names: DEVSRV,GARINT or ESOECF -->
+	<property name="servername" value="ESOECF"/>
+	<property name="date" value="28-MAR-2008"/>
+	<property name="version" value="1.0.0"/>
+	<property name="exec-jarfile" location="MBSEPlugin.jar" />
+
+	<!-- Clean distribution directory -->
+	
+	<target name="clearing-distribution-dir">
+		<delete dir="${dist}" />
+		<delete file="${exec-jarfile}" />
+	</target>
+
+	<!-- Create the distribution directory -->
+	
+	<target name="making-distribution-directory" depends="clearing-distribution-dir">
+		<delete dir="${dist}" />
+		<mkdir dir="${dist}" />
+	</target>
+	
+	<!-- Copy  tool  project files -->
+	
+	<target name="copy-files">
+		<copy todir="${dist}">
+			<fileset dir="bin">
+				<exclude name="**/Makefile"/>
+			</fileset>
+		</copy>
+	</target>
+		
+	
+	
+	<!-- Build the final executable Jarfile for this tool -->
+	
+	<target name="building-jarfile">
+		<jar destfile="${exec-jarfile}">
+			<fileset dir="${dist}" />
+			<manifest>
+				<attribute name="Built-By" 			value="${user.name}" />
+				<attribute name="Built-On" 		value="${sys.time}" />
+			</manifest>
+		</jar>
+	</target>
+  	
+	<!-- build an executable Jarfile for this tool  -->
+	
+	<target name="exec-jarfile"
+				depends	=
+		
+				"
+				making-distribution-directory,    		
+				copy-files,
+				building-jarfile
+        	 	
+        	 ">
+	</target>
+</project>	    		

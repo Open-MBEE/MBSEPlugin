@@ -1,0 +1,832 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+<info>
+<subtitle>Model Based Document Generation User Manual</subtitle>
+<publishername>SE2 Challenge Team</publishername>
+<productnumber>SE2-UM-01</productnumber>
+<pubdate>2011-12-23</pubdate>
+<issuenum>1</issuenum><title>INCOSE - MBSE Initiative</title><author role="owner">
+<personname><firstname>Michele</firstname>
+<surname>Zamparelli</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="wpManager">
+<personname><firstname>Michele</firstname>
+<surname>Zamparelli</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="releaser">
+<personname><firstname>Robert</firstname>
+<surname>Karban</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="author">
+<personname><firstname>Michele</firstname>
+<surname>Zamparelli</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="author">
+<personname><firstname>Robert</firstname>
+<surname>Karban</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="author">
+<personname><firstname>Chakajkla</firstname>
+<surname>Jesdabodi</surname>
+</personname>
+<affiliation><orgname>TUM</orgname></affiliation>
+</author>
+</info>
+<bookinfo>
+<revhistory xml:id="Model_Based_Document_Generation_User_Manual__RevisionHistory">
+<revision xml:id="Model_Based_Document_Generation_User_Manual__RevisionHistory__1__17_0_4_4135058a_1329840092965_858731_16655">
+<revnumber>1</revnumber>
+<date>2012-03-21</date>
+<revdescription>all</revdescription>
+<author><personname>Chakajkla Jesdabodi</personname></author>
+<revremark><para>Initial Revision</para></revremark>
+</revision>
+</revhistory>
+</bookinfo>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Introduction" >
+   <title>Introduction</title>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__Scope">
+<title>Scope</title>
+        <para annotations="html converted">      This document is the user manual for a software plug-in to the MagicDraw       UML/SysML modelling tool. It also briefly addresses the Model Based       Document Generation technique in general, and the rationale for such a       plug-in.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      This document assumes some familiarity with generic UML concepts (most       notably stereotypes).    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__Purpose">
+<title>Purpose</title>
+        <para annotations="html converted">      This document explains how to install and use a software add-on to the <emphasis role="italic">MagicDraw</emphasis>       UML/SysML&#160;modeling tool which allows users to extract a printable       formatted document from a properly edited model. The parts of the model       from which the document is extracted shall in general contain structure,       prose and references to various types of system elements also present in       the same artifact.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The modeling tool is MagicDraw, and the software is installed as a       plug-in.    </para>  <para annotations="paragraph-no-html">
+This documents explains how to use the document generation plugin for MagicDraw.</para>
+<para annotations="paragraph-no-html">
+The plug in is used to transform a document, which is  "stored" in a SysML/UML model into an XML file conforming  with DocBook, for further usage. Most typically the document will be converted to PDF.</para>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__Glossary__Definitions__and_Conventions">
+<title>Glossary, Definitions, and Conventions</title>
+        <para annotations="html converted">      For a definition of book, chapter, section, part, paragraph etc. please       refer to the documents in <xref linkend="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents"></xref>     </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__Abbreviations_and_Acronyms">
+<title>Abbreviations and Acronyms</title>
+        <para annotations="html converted">      MBDG&#160;&#160;&#160;&#160;&#160;&#160;Model Based Document Generation    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__How_this_document_was_made">
+<title>How this document was made</title>
+        <para annotations="html converted">      This document was generated from a SysML model archived in the Teamwork       Server (RD3). The model is essentially an augmented version of the       example model for a Hybrid Sport Utility Vehicle which the MagicDraw       manufacturer ships with its product.     </para>    <para annotations="html converted">      Notice that the SysML&#160;model does not need to be archived in a Teamwork       Server for this software to work.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The HSUV model was chosen since it is fairly complete and contains       elements which allow to show all features of the MBDG plug-in. Since in       most cases only the rendering is shown in this document and no detailed       explanation can be easily given, the reader is encouraged to look at the       model directly to fully understand what is happening &quot;behind the scenes&quot;.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Introduction__Copyright">
+<title>Copyright</title>
+        <para annotations="html converted">      The software described in this document is subject to the following       copyright statement:    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * (c) INCOSE SE2 Challenge Team for Telescope Modeling 2011    </para>    <para annotations="html converted">      * Copyright by ESO, HOOD, TUM, oose, GfSE    </para>    <para annotations="html converted">      * All rights reserved    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is free software; you can redistribute it and/or    </para>    <para annotations="html converted">      * modify it under the terms of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License as published by the Free Software Foundation; either    </para>    <para annotations="html converted">      * version 2.1 of the License, or (at your option) any later version.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is distributed in the hope that it will be useful,    </para>    <para annotations="html converted">      * but WITHOUT ANY WARRANTY; without even the implied warranty of    </para>    <para annotations="html converted">      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU    </para>    <para annotations="html converted">      * Lesser General Public License for more details.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * You should have received a copy of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License along with this library; if not, write to the Free Software    </para>    <para annotations="html converted">      * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      *    </para>  </sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents" >
+   <title>Related Documents</title>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Applicable_Documents">
+<title>Applicable Documents</title>
+<bibliography xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Applicable_Documents__AD">
+<biblioentry xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Applicable_Documents__AD__SEWG_glossary">
+<abbrev>AD1</abbrev><title>SEWG glossary</title>
+<productnumber>GEN-SPE-ESO-50000-0023 </productnumber>
+<issuenum>Issue 1</issuenum>
+<pubdate>2010</pubdate>
+</biblioentry></bibliography>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents">
+<title>Reference Documents</title>
+<bibliography xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents__RD">
+<biblioentry xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents__RD__DocBook_5__The_Definitive_Guide">
+<abbrev>RD1</abbrev><title>DocBook 5: The Definitive Guide. by Norman Walsh  for DocBook V5.0+</title>
+<productnumber> </productnumber>
+<issuenum>Version 1.1</issuenum>
+<pubdate>Updated: 20 May, 2010</pubdate>
+</biblioentry><biblioentry xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents__RD__DocBook_online_reference">
+<abbrev>RD2</abbrev><title>http://www.docbook.org/tdg5/en/html/docbook.html</title>
+<productnumber> </productnumber>
+<issuenum>5</issuenum>
+<pubdate></pubdate>
+</biblioentry><biblioentry xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents__RD__ESO_SDD_TWS">
+<abbrev>RD3</abbrev><title>ESO SDD Teamwork Server installation for MagicDraw</title>
+<productnumber> </productnumber>
+<issuenum></issuenum>
+<pubdate></pubdate>
+</biblioentry><biblioentry xml:id="Model_Based_Document_Generation_User_Manual__Related_Documents__Reference_Documents__RD__RD4">
+<abbrev>RD4</abbrev><title>Magic Draw User Manual</title>
+<productnumber> </productnumber>
+<issuenum>17.0</issuenum>
+<pubdate></pubdate>
+</biblioentry></bibliography>
+</sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Overview" >
+   <title>Overview</title>
+        <para annotations="html converted">      In current (systems) engineering developments printed documentation is       culturally the primary artifact for information interchange, including       contractual purposes.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Recently though, system models have shown their usefulness for several       system engineering activities and engineers have started maintaining       descriptive models of systems using SysML, gradually enhancing them with       details and enriching them with different points of views and       perspectives.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Such models live therefore a separate, autonomous life with respect to       printed documentation, and authors often find themselves having to copy       &amp; paste diagrams, or other information into documents.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      In other words, two sources of information (Model and Document) have to       be maintained and get out of sync very easily.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Document generation engines (velocity template) have typically       hard-coded references to model elements and diagrams, whereas the       solution suggested here makes relocation, renaming, changes and even       deletions in the model transparent to the final document artefact.    </para>  <sect1 xml:id="Model_Based_Document_Generation_User_Manual__Overview__Concepts">
+<title>Concepts</title>
+<para annotations="paragraph-no-html">
+A DocBook "book" is essentially a set of containers containing other containers or terminal elements which can be primarily textual paragraphs or queries to system elements (see <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries"></xref> ). The ordering obviously matters for the final artifact, and is obtained from the ordering of the tags in the module.</para>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Overview__Concepts__16_9_41410591_1292415300911_518498_13930">
+<title>DocBook Definitions</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="DocBook_Definition__16_6_2_41320585_1270545073964_301851_15918.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      The solution to the described situation consists in creating a model of       the document, possibly, though not necessarily, in the same artefact       (.mdzip file) where the system model is stored. Existing system model       elements have then unique identifiers.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      A subset of the DocBook ontology is mapped to model elements using a       dedicated SysML profile. <xref linkend="Model_Based_Document_Generation_User_Manual__Overview__Concepts__16_9_41410591_1292415300911_518498_13930"></xref>  shows a class diagram of such a       profile, where the stereotypes correspond to those elements which       normally appear in a DocBook conform XML&#160;document. Stereotypes were       created for a minimal subset of DocBook elements.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Overview__Implementation">
+<title>Implementation</title>
+        <para annotations="html converted">      Once the DocBook standard, maintained by OASIS,       (&#160;http://www.oasis-open.org/home/index.php ) is chosen as a basis for       development, the functionality for code generation is implemented by       means of a software plug-in to the modeling tool, using the tool's own       customization facilities (open API). In addition, a SysML&#160;profile for       DocBook was created, which is available for usage at ESO's Teamwork       Server.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The suggested architecture is largely tool independent, the software       presented here is a specialization for the MagicDraw case.    </para>          <para annotations="html converted">      Stereotype tags are used to reference to system element models, text is       entered in comments (which can be visualized in diagrams) and references       to model element or diagrams can be selected using the tool navigation       facilities.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Overview__Advantages">
+<title>Advantages</title>
+        <orderedlist>      <listitem><para annotations="html converted">        consistent integration of system model and system documentation      </para></listitem>      <listitem><para annotations="html converted">        direct linking to model elements (also diagrams) from the document      </para></listitem>      <listitem><para annotations="html converted">        changes of diagram names are automatically reflected in the document      </para></listitem>      <listitem><para annotations="html converted">        using proper definition of the stereotype associations only compatible         elements can be selected to compose the document, e.g. a figure         references diagrams, a chapter references paragraphs.      </para></listitem>      <listitem><para annotations="html converted">        the documentation is at the same time navigable in the model and         printable      </para></listitem>      <listitem><para annotations="html converted">        documents are modeled in a tool independent way.      </para></listitem>      <listitem><para annotations="html converted">        A plugin is needed to generate DocBook XML.      </para></listitem>    </orderedlist>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Overview__A_simple_Use_Case__adding_a_chapter">
+<title>A simple Use Case: adding a chapter</title>
+        <para annotations="html converted">      In order to add a chapter B to a book A, the following modifications are       needed in the model:    </para>    <para annotations="html converted">          </para>    <orderedlist>      <listitem><para annotations="html converted">        Create a package B for the chapter, give it a name      </para></listitem>      <listitem><para annotations="html converted">        Stereotype package B by &lt;&lt;chapter&gt;&gt;      </para></listitem>      <listitem><para annotations="html converted">        Modify properties of &lt;&lt;book&gt;&gt; element A, by adding a reference to B,         .e.g. modifying the tagged value to include B in its list      </para></listitem>    </orderedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      In order to increase the usability of the product, all these steps have       been incorporated into actions, in this case the &quot;SE2: Add Chapter&quot;       action, which is available through the plugin.    </para>    <para annotations="html converted">      Users familiar with modeling tools will probably be acquainted with the       issue that the containment tree (the &quot;tree explorer&quot;&#160;on the left of the       main window)&#160;normally orders items according to a lexicographic       ordering, and not in temporal one.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      In other words, repeating the above steps for multiple chapters would       soon lead to difficulties in figuring out which their respective       ordering in the final document will be.    </para>    <para annotations="html converted">      This problem is addressed in the &#160;<xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Using_the_Edit_Panel"></xref> , where a pseudo       WYSIWYG&#160;display is presented.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Overview__Model_organization">
+<title>Model organization</title>
+        <itemizedlist>      <listitem><para annotations="html converted">        The document should be a MagicDraw project or module      </para></listitem>      <listitem><para annotations="html converted">        Create per document a single module      </para></listitem>      <listitem><para annotations="html converted">        Use the modules (describing you system) you need for the documentation      </para></listitem>      <listitem><para annotations="html converted">        Do NOT make a document part of your system module      </para></listitem>      <listitem><para annotations="html converted">        The document module shall depend on the system module but not the         other way round.      </para></listitem>    </itemizedlist>  </sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Instructions" >
+   <title>Instructions</title>
+        <para annotations="html converted">      The following table clarifies which elements can be added and where,       specifying the native SysML&#160;elements plus the stereotypes, and the       tagged values which need to be modified. The <emphasis role="bold">Addendum</emphasis> is the type       of docbook element which needs to be added, the <emphasis role="bold">Container Stereotype </emphasis>represents       the stereotype which should be applied to the container for an addendum       of that type to be added. In turn, the addendum is nothing but a native       UML&#160;element of type <emphasis role="bold">Addendum Type</emphasis>. The Container Stereotype       has a <emphasis role="bold">Tag </emphasis>where the Addendum is added to, by means of the <emphasis role="bold">Action</emphasis>       specified in the last column.    </para>    <para annotations="html converted">          </para>    <table width="461" cellspacing="0" cellpadding="0">      <tr>                <td width="74">          <para annotations="html converted">            <emphasis role="bold">Addendum</emphasis>          </para>        </td>                <td width="75">          <para annotations="html converted">            <emphasis role="bold">Container Stereotype </emphasis>          </para>        </td>                <td width="79">          <para annotations="html converted">            <emphasis role="bold">&#160;Addendum Type </emphasis>          </para>        </td>                <td width="119">          <para annotations="html converted">            <emphasis role="bold">&#160;Tag </emphasis>          </para>        </td>                <td>          <para annotations="html converted">            <emphasis role="bold">&#160;Action</emphasis>          </para>        </td>            </tr>      <tr>                <td width="74">          <para annotations="html converted">            chapter          </para>        </td>                <td width="75">          <para annotations="html converted">            &#160;Book          </para>        </td>                <td width="79">          <para annotations="html converted">            &#160;Package          </para>        </td>                <td width="119">          <para annotations="html converted">            &#160;bookComponent          </para>        </td>                <td>          <para annotations="html converted">            &#160;SE add Chapter          </para>        </td>            </tr>      <tr>                <td width="74">          <para annotations="html converted">            preface          </para>        </td>                <td width="75">          <para annotations="html converted">            &#160;Book          </para>        </td>                <td width="79">          <para annotations="html converted">            &#160;Package          </para>        </td>                <td width="119">          <para annotations="html converted">            &#160;bookComponent          </para>        </td>                <td>          <para annotations="html converted">            &#160;SE add Preface          </para>        </td>            </tr>      <tr>                <td width="74">          <para annotations="html converted">            &#160;paragraph          </para>        </td>                <td width="75">          <para annotations="html converted">            &#160;Chapter          </para>        </td>                <td width="79">          <para annotations="html converted">            &#160;Comment          </para>        </td>                <td width="119">          <para annotations="html converted">            &#160;blockElements          </para>        </td>                <td>          <para annotations="html converted">            &#160;SE add Paragraph          </para>        </td>            </tr>      <tr>                <td width="74">          &#160;paragraph        </td>                <td width="75">          &#160;Section        </td>                <td width="79">          &#160;Comment        </td>                <td width="119">          &#160;blockElements        </td>                <td>          &#160;SE add Paragraph        </td>            </tr>      <tr>                <td width="74">          &#160;section        </td>                <td width="75">          &#160;Chapter        </td>                <td width="79">          &#160;Package        </td>                <td width="119">          &#160;Sections        </td>                <td>          &#160;SE add Section        </td>            </tr>      <tr>                <td width="74">          &#160;Revision History        </td>                <td width="75">          &#160;Book        </td>                <td width="79">          &#160;Package        </td>                <td width="119">          &#160;revhistory        </td>                <td>          &#160;SE add Revision&#160;History        </td>            </tr>      <tr>                <td width="74">          &#160;Revision&#160;Entry        </td>                <td width="75">          &#160;revhistory        </td>                <td width="79">          &#160;Class        </td>                <td width="119">          &#160;revision        </td>                <td>          &#160;SE create Revision Entry        </td>            </tr>      <tr>                <td width="74">          &#160;Biblio Entry        </td>                <td width="75">          &#160;bibliography        </td>                <td width="79">          &#160;Class        </td>                <td width="119">          &#160;biblioEntry        </td>                <td>          &#160;SE create Biblio Entry        </td>            </tr>        </table>  <sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__A_note_on_the_user_interface">
+<title>A note on the user interface</title>
+        <para annotations="html converted">      All the functionality supplied by the MBSE plugin is implemented in       &quot;Actions&quot; which are triggered from the context menu from MagicDraw       containment tree. Actions are available depending upon the type and       permissions (read-write or read-only) on the currently selected element.    </para>    <para annotations="html converted">      For example, the action to create a Book element will not be available       when a chapter is selected, whereas the vice versa (creating a chapter)       is true, if the book is currently editable.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__A_note_on_the_user_interface__16_9_41410591_1292822415341_546750_13831">
+<title>contextMenu</title><mediaobject>
+<imageobject>
+<imagedata fileref="contextMenu__16_9_41410591_1292592337111_88064_13797.png" width="30%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      Each element when created can be customized in its specification dialog.       The specification dialog will have a sub menu called &quot;MBDG&quot;, under this       menu the user can edit different tags of those element, for e.g. for       Book user can specify its name, components and authors etc. Also &quot;MBDG&quot;       sub menu will appear in the quick properties menu (under the containment       tree).    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__A_note_on_the_user_interface__17_0_3_3eff056b_1321442460802_889781_15273">
+<title>specificationDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="specificationDialog__17_0_3_3eff056b_1321442246450_340391_15233.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      The following example shows how Authors components can be added to a       Book. The specification dialog will show matches of possible components       to be added e.g. (23 matches). The user can toggle between multiple       selection or single selection. Recursive add of elements in a folder can       also be done by selecting &quot;Add recursively&quot; option.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__A_note_on_the_user_interface__17_0_3_3eff056b_1321443481171_333882_18037">
+<title>exampleMulti</title><mediaobject>
+<imageobject>
+<imagedata fileref="exampleMulti__17_0_3_3eff056b_1321443210100_741590_18016.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_book_to_your_model">
+<title>Adding a book to your model</title>
+        <para annotations="html converted">      In order to add a book to your model, simply look for a package where       you have write permission (e.g. any package, if you're not using       teamwork server for configuration control) and right-click in the       context menu. The action &quot;SE add book&quot; should appear in the list in the       MBSE submenu.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The book stereotype in the DocBook profile has a variety of tags which       get rendered primarily on the front page of the resulting PDF document.    </para>    <para annotations="html converted">      These are:    </para>    <para annotations="html converted">          </para>    <itemizedlist>      <listitem><para annotations="html converted">        Document Number:&#160;&#160;self explanatory.      </para></listitem>      <listitem><para annotations="html converted">        Issue Date:&#160;the issue date for the document. Issue:&#160;a string         containing the number of the issue for this document/book      </para></listitem>      <listitem><para annotations="html converted">        owner: the document owner, rendered on the front page.      </para></listitem>      <listitem><para annotations="html converted">        Work Package Manager (WPManager) :&#160;a reference to an element         stereotyped by &lt;&lt;Author&gt;&gt;&#160;which represents the Work Package Manager.      </para></listitem>      <listitem><para annotations="html converted">        releaser:&#160;this is rendered with the corresponding field after Owner         and Work Package Manager. In the ELT xsl template it is rendered to         Head of Project Office, in the SE2 xsl template it is rendered to         Releaser.      </para></listitem>      <listitem><para annotations="html converted">        Authors: the complete list of authors rendered on the second page.         These tag contains references to elements stereotyped by &lt;&lt;Author&gt;&gt;.      </para></listitem>      <listitem><para annotations="html converted">        publisher:&#160;this string is used by the rendering for the header and         footer for any page but the first one. (in this model it is set to &quot;SE2         Challenge Team&quot;)      </para></listitem>      <listitem><para annotations="html converted">        Programme:&#160;a string which appears on the front page, above the title         of the document. (in this model it is set to &quot;INCOSE - MBSE         Initiative&quot;)      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      Notice that the title of the document is the name of the element of type       &lt;&lt;book&gt;&gt;. The following diagram shows the dialog that will appear when       the user click SE add book option. Additional information like       Programme, WP Manager or Authors can be added from the &quot;MBDG&quot; sub menu       in specification dialog of the book    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_book_to_your_model__17_0_3_3eff056b_1321442341344_258365_15255">
+<title>bookDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="bookDialog__17_0_3_3eff056b_1321442246004_620825_15225.png" width="50%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Using_the_Edit_Panel">
+<title>Using the Edit Panel</title>
+        <para annotations="html converted">      The &#160;<emphasis role="italic">Edit Panel</emphasis> is an extended feature of the MBSE plugin       which provides a user interface elements to preview the document before       generating the final PDF file. The Edit panel allows operations such as       re-arranging the order of the elements (e.g. chapters, sections,       paragraphs) under the same parent or different parent; movements may be       performed via drag and drop actions within the limitations provided by       the DocBook profile (e.g. a paragraph cannot be moved under a       bibliography element). The preview shows how the document will look like       when it is generated as a PDF, and also includes scaled diagrams and       tables.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      &#160;&#160;&#160;&#160;The Edit Panel for a Book element can be by invoking &quot;SE2: Show Edit       Panel&quot; command in the MBSE plugin for Book Element. The generated       preview allows the user to navigate through the documents by a document       tree; sublevel contents (chapters, sections)&#160;can be opened       hierarchically. Th Edit Panel also provides a content pane (right side)       which illustrate each element information in more detail. The preview       information in the content pane is updated automatically when the user       updates the contents in the model for e.g., changing a name of a chapter       or section, or changing the content of a paragraph etc. Also delete and       undo operation is supported by the content pane. Elements like       figureImage, figureDiagram and figureTables etc. are rendered in the       content pane in a scaled form with its description, this is just to       provide the user with an idea of how the PDF file will look like.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      &#160;&#160;&#160;&#160;User can perform a right click action on each element to invoke the       MBSE actions (context menu), for e.g. right clikcing on a Section will       give you an option for creating pargraph as show in the following figure       image, query etc., this applies for other elements as well.       Double-clicking on composite element like Chapter and Sections in the       content pane will cause the element to expand/collapse.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      &#160;&#160;&#160;&#160;The Edit Panel also provides a search functionality with case       sensitive option, search can be done by typing into the search box and       browsing through search results by next and previous button.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      &#160;&#160;&#160;&#160;For the first version of the Edit Panel, a &quot;refresh&quot; button is       provided and should be used when a user tries to reorder the block       elements in the model which does not get reflected in the Edit Panel.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      &#160;&#160;&#160;&#160;The Edit panel does not take into account the information generated       by the queries for e.g. some querys that generate a table of paragraph       are not shown in the Edit Panel and can only be observed in the final       PDF file.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Using_the_Edit_Panel__17_0_4_3eee0562_1329999087331_245819_14919">
+<title>editPanel1</title><mediaobject>
+<imageobject>
+<imagedata fileref="editPanel1__17_0_4_3eee0562_1329999027767_801797_14908.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_part_to_the_book">
+<title>Adding a part to the book</title>
+        <para annotations="html converted">      Part can be added under a Book element by selecting SE2: create Part       option under MBSE menu (see  <xref linkend="Model_Based_Document_Generation_User_Manual__Overview__Concepts__16_9_41410591_1292415300911_518498_13930"></xref> ).    </para>    <para annotations="html converted">      Part can contain subsections and paragraphs. User can specify part name       and its components.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Bibliography">
+<title>Adding a Bibliography</title>
+        <para annotations="html converted">      A Bibliography specify the referenced documents for a book. A       bibliography element can be added under a Section element by selecting       &quot;SE2:createBibliography&quot;. A dialog will appear where the user can       specify the bibliography name. A Bibliography can contain many       biblioentry elements. The user can specify the Abbrevation of each       biblioentry under the bibliography by editing the Abbrev Prefix tag       under MBDG sub menu in the specification dialog. In the following image,       AD is set as the abbreviation,    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Bibliography__17_0_3_3eff056b_1321445030546_389820_18134">
+<title>bibliographyDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="bibliographyDialog__17_0_3_3eff056b_1321445003989_168062_18119.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      A Biblioentry can be added to a Bibliography by selecting &quot;SE2:create       Biblio entry&quot; option. The following dialog will appear where the user       can specify a biblioentry details.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Bibliography__17_0_3_3eff056b_1321445170153_37978_18170">
+<title>biblioentryDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="biblioentryDialog__17_0_3_3eff056b_1321445076187_597174_18152.png" width="50%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Revision_History">
+<title>Adding a Revision History</title>
+<para annotations="paragraph-no-html">
+A Revision History is a list of the existing revisions for a book. A Revision History element can be added under a Book element by selecting "SE2: createRevisionHistory".A Revision History can contain many Revision elements.There is only one Revision History per book.</para>
+<para annotations="paragraph-no-html">
+A Revision can be added to a Revision History  by selecting "SE2: create Revision Entry" option. The following dialog will appear where the user can specify the Revision details.</para>
+<figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Revision_History__17_0_4_4135058a_1329746278859_140569_14869">
+<title>revisionentryDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="revisionentryDialog__17_0_4_4135058a_1329746017289_776858_14838.png" width="60%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      By clicking on the &quot;Select Author&quot; button a pop-up window will be opened       to chose existing elements in the model which are stereotypes with &#171;author&#187;.       The name of the selected author will then appear on the left field.    </para>    <para annotations="html converted">      The issue number for the entire book is taken as a default for the       Revision Number field.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Revision date, remarks and description may be entered as needed, the       latter being used in the rendering to PDF&#160;to list the sections/chapters       which have been modified in this revision.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_chapter_to_a_part_or_book">
+<title>Adding a chapter to a part or book</title>
+        <para annotations="html converted">      A Chapter is the basic element of a Book. It can contain queries,       figures (diagram or image), paragraph and subsections. Chapter can be       added by selecting SE2: createChapter option under MBSE menu.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_paragraphs">
+<title>Adding paragraphs</title>
+<para annotations="paragraph-no-html">
+Paragraphs are the primary docbook element for holding prose text</para>
+        <para annotations="html converted">      Paragraphs may be added using the &quot;SE2: create Paragraph&quot; action from       the Context Menu. Or, as for any other DocBook element, may be added       editing the specification of the corresponding containing element, by       opening its specification, searching for the <emphasis role="italic">blockElements</emphasis> tag       and using the buttons to create new elements.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      For example, adding a Paragraph to a Section would entail:    </para>    <itemizedlist>      <listitem><para annotations="html converted">        creating a Comment element      </para></listitem>    </itemizedlist>    <itemizedlist>      <listitem><para annotations="html converted">        Stereotyping it as paragraph      </para></listitem>    </itemizedlist>    <itemizedlist>      <listitem><para annotations="html converted">        adding the Comment element to the tag &quot;blockElements&quot; of the Section      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      As already mentioned. this tedious work can be automated using the       Actions from the user interface.    </para>          <para annotations="html converted">      Paragraphs can be edited in plain text or using the HTML editor of       MagicDraw.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The HTML editor provides more text formatting capabilities like:    </para>    <itemizedlist>      <listitem><para annotations="html converted">        <emphasis role="bold">Bold text </emphasis>      </para></listitem>      <listitem><para annotations="html converted">        <emphasis role="italic">Italic Text </emphasis>      </para></listitem>      <listitem><para annotations="html converted">        <emphasis role="underline">Underlined </emphasis>      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      It also allows nested ordered lists in a paragraph:    </para>    <orderedlist>      <listitem><para annotations="html converted">        Item 1      </para></listitem>      <listitem><para annotations="html converted">        Item 2      </para></listitem>      <listitem><para annotations="html converted">        Item 3      </para></listitem>    </orderedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      Or even nested bullets and ordered lists:    </para>    <para annotations="html converted">          </para>    <itemizedlist>      <listitem><para annotations="html converted">        b1        <itemizedlist>          <listitem><para annotations="html converted">            b1.1          </para></listitem>          <listitem><para annotations="html converted">            b1.2          </para></listitem>        </itemizedlist>      </para></listitem>      <listitem><para annotations="html converted">        b2        <itemizedlist>          <listitem><para annotations="html converted">            b2.1          </para></listitem>          <listitem><para annotations="html converted">            b2.1          </para></listitem>        </itemizedlist>      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <orderedlist>      <listitem><para annotations="html converted">        item 1        <orderedlist>          <listitem><para annotations="html converted">            item 1.1          </para></listitem>          <listitem><para annotations="html converted">            item 1.2          </para></listitem>        </orderedlist>      </para></listitem>      <listitem><para annotations="html converted">        item 2      </para></listitem>    </orderedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      Simple tables can be created with the HTML editor within a paragraph.    </para>    <para annotations="html converted">      However, they cannot be referenced with a x-reference. For x-reference a       separate table stereotype element must be used as described in <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Tables"></xref> .    </para>    <para annotations="html converted">          </para>    <table cellpadding="0" width="100%" cellspacing="0">      <tr>                <td>          &#160;element 1.1        </td>                <td>          &#160;element 1.2        </td>            </tr>      <tr>                <td>          &#160;element 2.1        </td>                <td>          &#160;element 2.2        </td>            </tr>      <tr>                <td>          &#160;element 3.1        </td>                <td>          &#160;element 3.2        </td>            </tr>      <tr>                <td>          <itemizedlist>            <listitem><para annotations="html converted">              item1            </para></listitem>            <listitem><para annotations="html converted">              item2&#160;            </para></listitem>          </itemizedlist>                  </td>                <td>          <orderedlist>            <listitem><para annotations="html converted">              item 1            </para></listitem>            <listitem><para annotations="html converted">              item 2&#160;            </para></listitem>          </orderedlist>                  </td>            </tr>        </table>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images">
+<title>Including external images</title>
+        <para annotations="html converted">      The addition of external images involves multiple steps.    </para>    <para annotations="html converted">      A Class or Block element needs to be created. An external image may be       then assigned to it, simply by dragging and dropping it from the desktop       or from a web browser, or using the selector from the specification       panel. In both cases, the image gets added to the 'image' property of       the Class.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      In order then for the external picture to appear in the final outcome, a       figureImage elements needs to be created in the chapter or section,       using the available UI&#160;commands for section.    </para>    <para annotations="html converted">      The&#160;SE2:&#160;create Figure Image first asks for a figure caption, and then       pops up a selector for the Class itself. The figure caption is used for       the title.    </para>    <para annotations="html converted">      The figureImage element is rendered in XML&#160;and PDF with the image it       refers to.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      It is recommended to put all external images in a dedicated package.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__16_9_41320588_1297690734753_163289_13608">
+<title>HSUV img</title><mediaobject>
+<imageobject>
+<imagedata fileref="HSUVimg__16_9_41320588_1297690395142_714640_13568.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__16_9_41320588_1297690747596_34518_13616">
+<title>a figure diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="Start__16_0beta1_1b500480_1222319760207_169549_11714.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+a Diagram Start
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__Adding_comment_text_example">
+<title>Adding comment text example</title>
+        <para annotations="html converted">      A comment text can be added to a figureImage or figureDiagram by     </para>    <para annotations="html converted">      1) specifying the comment value in the figureDiagram / Image       documentation. And 2) setting the appearance of this comment text , to       make the comment appear before or after the diagram, like the given       image below.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__Adding_comment_text_example__17_0_3_3eff056b_1321549753866_812191_19906">
+<title>commentText</title><mediaobject>
+<imageobject>
+<imagedata fileref="commentText__17_0_3_3eff056b_1321549445841_991930_19860.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+Use after value set, this image shows how the appearance of the comment text can be customized to appear before or after the figureImage/ Diagram by setting the Use Text tag values accordingly.
+<figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__Adding_comment_text_example__17_0_3_3eff056b_1321549785335_439540_19913">
+<title>commentText2</title><mediaobject>
+<imageobject>
+<imagedata fileref="commentText2__17_0_3_3eff056b_1321549705921_562950_19891.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+Comment text goes here, this image illustrates how a comment text can be added by simply editing the documentation text of the figureImage element.
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__Setting_Figure_Size_and_Width">
+<title>Setting Figure Size and Width</title>
+        <para annotations="html converted">      A figureImage or Daigram can be set to scalefit or increase or decrease       its dimension. This can be done by setting the Scalefit tag or Width tag       value. For e.g. to reduce the image size by 50 percent we can set the       Width tag value to 50. like the image below.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Including_external_images__Setting_Figure_Size_and_Width__17_0_3_3f36057b_1321634082364_364344_18619">
+<title>widthDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="widthDialog__17_0_3_3f36057b_1321634059385_349986_18604.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references">
+<title>Adding internal references</title>
+        <para annotations="html converted">      Any model element which is stereotyped with <emphasis role="italic">xreference</emphasis> can be       referred to. During generation, each document element besides paragraphs       is given a unique ID which corresponds to its location in the       containment tree.    </para>          <para annotations="html converted">      In order to add one or more references from within a pragraph, the       keyword &lt; token &gt; (hereafter always written wit space characters, only       necessart in order for it to appear properly in this manual and not to       be used otherwise) will have to be added as many times as references are       desired. Correspondingly the xref tagged value in the paragraph will       need to refer to the desired elements.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The following image shows the Xref tag under MBDG sub menu in the       specification dialog of a paragraph. User can edit the value of Xref tag       to reference as many elements as possible (user must note that the       element to be added must be labeled &quot;matches&quot; in the dialog). For e.g.       if the Xref tag has 5 xref values, meaning the user has referenced 5       elements, then in the paragraph text, the user must add the keyword &lt;       token &gt; 5 times, in the same order as when the elements were referenced.       This way 5 references will be created in that paragraph when the user       generates the DocBook.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__17_0_3_3eff056b_1321445907008_776745_18275">
+<title>xrefDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="xrefDialog__17_0_3_3eff056b_1321445883860_754329_18260.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__Adding__token__references_example">
+<title>Adding &lt;token&gt; references example</title>
+        <para annotations="html converted">      In this example we will illustrate a step by step guide on how a &lt; token       &gt; reference can be created inside a paragraph. This reference mechanism       can be done against tables, figures or biblioentry etc.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The example will show how a biblioentry can be referenced.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Step 1: Create a paragraph element    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      This can be done by selecting &quot;SE2: create Paragraph&quot; option under the       MSBE menu.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Step 2: Add Xref values    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Open the paragraph's specification dialog, and click add values for the       Xref tag like the image below.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__Adding__token__references_example__17_0_3_3eff056b_1321548847805_153728_19726">
+<title>Edit option of Xref Tag</title><mediaobject>
+<imageobject>
+<imagedata fileref="EditoptionofXrefTag__17_0_3_3eff056b_1321548489019_516208_15371.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      After selecting Edit option , a new dialog will appear where the user       can browse different elements to be referenced, in our case we will       select a Biblioentry element.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__Adding__token__references_example__17_0_3_3eff056b_1321548883606_514577_19736">
+<title>Dialog for choosing referenced element</title><mediaobject>
+<imageobject>
+<imagedata fileref="Dialogforchoosingreferencedelement__17_0_3_3eff056b_1321548489000_971277_15368.png" width="50%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      After selecting the element you will notice that in the paragraph       specification dialog, Xref tag will have a new referenced value like the       image below.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__Adding__token__references_example__17_0_3_3eff056b_1321548913420_621252_19746">
+<title>Xref value added</title><mediaobject>
+<imageobject>
+<imagedata fileref="Xrefvalueadded__17_0_3_3eff056b_1321548489018_318402_15370.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      Step 3: Add &lt; token &gt; tag    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      In the paragraph where you have just added the Xref tag value. Add a       keyword &lt; token &gt; in the paragraph text where you want to reference the       biblioentry from.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Step 4: Adding multiple &lt; token &gt; tag    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Multiple references from a paragraph can be done by adding the keyword &lt;       token &gt; as many times as the number of your referenced values. Example,       if you repeat step 1 - 2, and you have added multiple Xref values like so    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references__Adding__token__references_example__17_0_3_3eff056b_1321548949345_890663_19756">
+<title>Multiple Xref Values, two biblioentries to be refrenced</title><mediaobject>
+<imageobject>
+<imagedata fileref="MultipleXrefValues,twobiblioentriestoberefrenced__17_0_3_3eff056b_1321548489016_937118_15369.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      We have added two biblioentry references. Now we must add the keyword &lt;       token &gt; 2 times in the paragraph text. For e.g. This is a reference &lt;       token &gt; (this is the 1st reference), this is also a reference &lt; token &gt;       (this is the second reference).    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      In this way the user will be able to create internal references, which       can be done not only with a biblioentry but also a section, chapter ,       figures etc.    </para>  </sect2>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries">
+<title>Adding Queries</title>
+        <para annotations="html converted">      A&#160;<emphasis role="italic">query</emphasis> is a mechanism to extract information from several       types of system model elements and render it in document's prose.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Support exists for different typs of queries (operations, ports,       constraints) and visualization styles (table or paragraph), as shown in       diagram <xref linkend="Model_Based_Document_Generation_User_Manual__Overview__Concepts__16_9_41410591_1292415300911_518498_13930"></xref> , where the characteristics of queries are displayed in       more detail.    </para>          <para annotations="html converted">      The following fields must be specified when adding a query:    </para>    <para annotations="html converted">          </para>    <table cellspacing="0" cellpadding="0" align="left" width="100%">      <tr>                <td valign="top" align="left">          &#160;element        </td>                <td valign="top" align="left">          the system model element whose characteristics the query will report           upon.        </td>            </tr>      <tr>                <td valign="top" align="left">          &#160;type        </td>                <td valign="top" align="left">          the query type: can take up the values:&#160;<emphasis role="bold">operations, ports,           documentation, constraints, properties </emphasis>.        </td>            </tr>      <tr>                <td valign="top" align="left">          &#160;useQueryText        </td>                <td valign="top" align="left">          a boolean specifying whether the text of the query (entered as a           body of the corresponding Comment element)&#160;shall be used in-line in           the document.        </td>            </tr>      <tr>                <td valign="top" align="left">          &#160;representation        </td>                <td valign="top" align="left">          this may be either tabular or paragraph, the meaning is           self-explanatory.        </td>            </tr>      <tr>                <td valign="top" align="left">          &#160;property        </td>                <td valign="top" align="left">          &#160;this can take up the values:&#160;<emphasis role="bold">owner</emphasis>,<emphasis role="bold">           baseClassifier</emphasis>,<emphasis role="bold"> realizedInterface</emphasis>,<emphasis role="bold"> classifierBehavior</emphasis>.           This is <emphasis role="underline">only</emphasis> used when the type field is set to <emphasis role="bold">properties</emphasis>        </td>            </tr>        </table>  <para annotations="paragraph-no-html">
+If the named referenced element is a requirement, it is handled as  such and the value of query type  is entirely ignored.</para>
+<para annotations="paragraph-no-html">
+As specified in <xref linkend="Model_Based_Document_Generation_User_Manual__Overview__Concepts__16_9_41410591_1292415300911_518498_13930"></xref> , queries are a special type of paragraph, and may be added in all places where a paragraph is allowed and  may be intermixed with paragraphs with no restrictions. Additional query types (like listing all elements represented in a diagram) are possible but not implemented at this stage.</para>
+        <para annotations="html converted">      When queries are created using the Actions from the context menu, a       selector pops up to allow the user to navigate the system model and       select the element to be queried. The latter may be a Figure, a       Requirement or a Block. The other fields of a query must be instead       entered using the specification dialog for the query itself.    </para>    <para annotations="html converted">          </para>          <para annotations="html converted">      The elements used in the following examples are the Block WirelessTire       Pressure Monitor and PowerControl Unit, from the HSUV&#160;Model used as an       example.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The following two Figures show two diagrams in which the elements appear       respectively.    </para>  <figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__16_9_41410591_1297147477203_425021_15310">
+<title>This is a figure</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="BlockdiagramfortheWheelPackage(WheelHubAssembly)__16_5_17530432_1241578927375_176350_5745.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__16_9_41410591_1297148828494_767461_15833">
+<title>Defining structure of power subsystem</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="DefiningStructureofPowerSubsystem__16_0beta1_1b500480_1221619933124_900944_3944.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+The following subsections provide examples of rendering for various settings of the queries fields, which are printed in boldface when sensible. </para>
+<figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__16_9_41410591_1297243855230_476239_16208">
+<title>mbseSelectionExample</title><mediaobject>
+<imageobject>
+<imagedata fileref="mbseSelectionExample__16_9_41410591_1297150306841_560439_15841.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+An example of selection can be see in Figure <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__16_9_41410591_1297243855230_476239_16208"></xref> .</para>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Requirements">
+<title>Requirements</title>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Requirements__16_9_4168058f_1297169064952_685645_15619">
+<title>Irrelevant since not used.</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="EstablishingHSUVRequirementsHierarchy__16_0beta1_1b500480_1221560155508_862195_6829.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="query documentation showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              When a query is made to an element of type Requirement or derived, query       type is ignored, and the requirement ID, name and textual content are       displayed, in the customary tabular or paragraph form.      
+<table frame="all"><title>Emissions</title><tgroup cols="3"><thead><row><entry>ReqID</entry><entry>ReqName</entry><entry>Text</entry></row></thead>
+<tbody><row><entry>null</entry><entry>Emissions</entry><entry>null</entry></row>
+</tbody></tgroup></table>
+</para>
+<para annotations="query documentation showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This is a a query on the same <emphasis role="bold">requirement </emphasis>element as above, but       in paragraph format.      
+null,"null"</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Operations">
+<title>Operations</title>
+<para annotations="query operations showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This is an example of a query where the <emphasis role="bold">operations</emphasis> of a Block       from the HSUV model are displayed in paragraph form. The boolean value       useQueryText is set to true.      
+<function>transmitPressure</function></para>
+<para annotations="query operations showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This is just like the query above but in <emphasis role="bold">tabular </emphasis>representation.       Notice the operation descriptions appearing in the table.      
+<table frame="all"><title>Wireless Tire Pressure Monitor</title><tgroup cols="2"><thead><row><entry>Operation</entry><entry>Description</entry></row></thead><tbody>
+<row><entry>transmitPressure</entry>
+<entry>This operation transmits the pressure.</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Properties">
+<title>Properties</title>
+<para annotations="query properties showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This is a Query on the <emphasis role="bold">properties</emphasis> of the referenced elements       shown in tabular representation.      
+<table frame="all"><title>Wireless Tire Pressure Monitor</title><tgroup cols="2">
+<tbody><row><entry><function>owner</function></entry><entry>Package Wheel</entry>
+</row>
+<row><entry><function>baseClassifier</function></entry><entry></entry>
+</row>
+</tbody></tgroup></table>
+<table frame="all"><title>FrontWheel</title><tgroup cols="2">
+<tbody><row><entry><function>owner</function></entry><entry>Package HSUV Structure</entry>
+</row>
+<row><entry><function>baseClassifier</function></entry><entry>Wheel Hub Assembly </entry>
+</row>
+</tbody></tgroup></table>
+</para>
+<para annotations="query properties showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This query shows the <emphasis role="bold">property </emphasis>query type, in tabular format.       Notice how since two queryTypes have been selected (property and owner),       they both get displayed as rows in a single table (operations and       receptions in the SUV model are not particularly well documented in this       case..).      
+<table frame="all"><title>ICE Command Interface_if</title><tgroup cols="2">
+<tbody><row><entry><function>realizedInterface</function></entry><table frame="all">
+<tgroup cols="2">
+<thead><row>
+<entry>Operation</entry><entry>Description</entry>
+</row></thead><tbody>
+<row><entry align="left">setThrottle</entry>
+<entry align="left">This is the documentation of setThrottle.</entry>
+</row>
+<row><entry align="left">setMixture</entry>
+<entry align="left">This sets the mixture for the mixing unit.</entry>
+</row>
+</tbody></tgroup></table>
+<table frame="all">
+<tgroup cols="2">
+<thead><row>
+<entry>Reception</entry><entry>Description</entry>
+</row></thead><tbody>
+<row>
+<entry align="left">s1</entry>
+</row>
+<row>
+<entry align="left">s2</entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<entry align="left"></entry>
+</row>
+<row><entry><function>owner</function></entry><entry>Package HSUV Interfaces</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Documentation">
+<title>Documentation</title>
+<para annotations="query documentation showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              When a query of type <emphasis role="bold">documentation </emphasis>is used, the element name       appears in boldface, followed by its fully qualified name in       parenthesis, followed by its documentation, if available, on a new       paragraph. This example has the userText field set to true. The       representation field value is ignored.      
+<emphasis role="bold">Wireless Tire Pressure Monitor</emphasis><emphasis> ( HSUVModel::Wheel::Wireless Tire Pressure Monitor )  </emphasis>
+<para annotations="finished doc">
+This device monitors the pressure of the Tires using a wireless connection.
+</para><para></para>
+</para>
+<para annotations="paragraph-no-html">
+Care should be taken that in general  the documentation of a Model Element  will include the comments attached to such element. Some of these relationships may not always be displayed in diagrams and be therefore difficult to detect.</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Ports">
+<title>Ports</title>
+<para annotations="query ports showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+              This is a query on the <emphasis role="bold">ports</emphasis> of a selected block. If the       representation type is not specified it defaults to <emphasis role="italic">table</emphasis>.      
+<function>epc</function>, <function>ice</function>, <function>trsm</function>, <function>eepc</function>, <function>etrsm</function>, <function>eice</function>, </para>
+<para annotations="query ports showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+              Here is a variant in tabular format, other fields unchanged.      
+<table frame="all"><title>Power Control Unit Ports</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="6*"/><colspec colnum="4" colname="col4" colwidth="6*"/><thead><row><entry align="left">Port</entry><entry align="left">Type</entry><entry align="left">Port Doc.</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">epc</entry>
+<entry align="left"></entry>
+<entry align="left">This is the documentation for the epc port.</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">ice</entry>
+<entry align="left">ICE Data Interface_if</entry>
+<entry align="left">This is the documentation for the ice port.</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">trsm</entry>
+<entry align="left"></entry>
+<entry align="left">This is the documentation for the trsm port.</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">eepc</entry>
+<entry align="left">IFS_EPC</entry>
+<entry align="left">This is the documentatioon for the eepc port.</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">etrsm</entry>
+<entry align="left">IFS_TRSM</entry>
+<entry align="left">This is the documentation for the etrsm port.</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">eice</entry>
+<entry align="left">IFS_ICE</entry>
+<entry align="left">This is the documentation for the eice port.</entry>
+<entry align="left">This is the documentation for the IFS_ICE</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Constraints">
+<title>Constraints</title>
+<para annotations="query constraintProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+A query on the constraints like this one in tabular format show the Constraint Parameters of a given constraint Block, their type and description.
+<para annotations="">
+
+</para><table frame="all"><title>StraightLineVehicle Dynamics  Constraint Properties</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="6*"/><colspec colnum="4" colname="col4" colwidth="6*"/><thead><row><entry align="left">Constraint</entry><entry align="left">Type</entry><entry align="left">Constraint Doc.</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">acc</entry>
+<entry align="left">AccelerationEquation</entry>
+<entry align="left">a(g)=F/M=P*t/mThis is the documentation of the constraint property for acceleration</entry>
+<entry align="left">This describes the Acceleration Equation.</entry>
+</row>
+<row><entry align="left">pwr</entry>
+<entry align="left">PowerEquation</entry>
+<entry align="left">tp(hp)=wheel power -drag-friction</entry>
+<entry align="left">This is documenting the PowerEquation ConstrainBlock</entry>
+</row>
+<row><entry align="left">vel</entry>
+<entry align="left">VelocityEquation</entry>
+<entry align="left">v(n+1)(mph)=v(n)+detla-v=v(n)=a*delta-t</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">pos</entry>
+<entry align="left">PositionEquation</entry>
+<entry align="left">x(n+1)(ft)=x(n)+delta-x= x(n)+v*delta-t</entry>
+<entry align="left">This is a comment anchored  to the Position Equation which will appear in the documentation of the Constraint Block.</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Constraints__16_9_41410591_1297238363058_905352_15963">
+<title>This is not used.</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="DefiningStraight-LineVehicleDynamicsMathematicalConstraints__16_0beta1_1b500480_1221648654831_471307_7008.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="paragraph-no-html">
+The queried Constraint Block appears in the Diagram in Figure <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Constraints__16_9_41410591_1297238363058_905352_15963"></xref> .</para>
+<para annotations="query constraintProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+A query of the same type and to the same Constraint Block, but in paragraph format looks like this: 
+acc,AccelerationEquation pwr,PowerEquation vel,VelocityEquation pos,PositionEquation </para>
+<para annotations="query constraints showQueriedElementDocumentation=true showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+<para annotations="">
+This is documenting the PowerEquation ConstrainBlock
+</para><table frame="all"><title>PowerEquation Constraints</title><tgroup cols="2"><thead><row><entry>Name</entry><entry>Constraint</entry></row></thead><tbody>
+<row><entry align="left">unnamed6</entry>
+<entry align="left">tp=whlpwr-(Cd*v)-(Cf*tw*v)</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+<para annotations="query ports showQueriedElementDocumentation=true showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+<para annotations="element docu">
+This is documenting the PowerEquation ConstrainBlock
+</para><table frame="all"><title>PowerEquation Parameters</title><tgroup cols="3"><thead><row><entry>Parameter</entry><entry>Type</entry><entry>Description</entry></row></thead><tbody>
+<row><entry align="left">whlpwr</entry>
+<entry align="left">Horsepwr</entry>
+</row>
+<row><entry align="left">i</entry>
+<entry align="left">Real</entry>
+</row>
+<row><entry align="left">Cd</entry>
+<entry align="left">Real</entry>
+</row>
+<row><entry align="left">Cf</entry>
+<entry align="left">Real</entry>
+</row>
+<row><entry align="left">tw</entry>
+<entry align="left">Weight</entry>
+</row>
+<row><entry align="left">tp</entry>
+<entry align="left">Horsepwr</entry>
+</row>
+<row><entry align="left">v</entry>
+<entry align="left">Vel</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Flow_Properties">
+<title>Flow Properties</title>
+<para annotations="query flowProperties showQueriedElementDocumentation=true showTypesDocumentation=false showPropertiesDocumentation=true showDefaultValue=false">
+This query differs from the previous one merely in that the types documentation has been switched off.
+<table frame="all"><title>FS_ICE Flow Properties</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="1*"/><colspec colnum="4" colname="col4" colwidth="12*"/><thead><row><entry align="left">Property</entry><entry align="left">Type</entry><entry align="left">Dir</entry><entry align="left">Property Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">engineData</entry>
+<entry align="left">ICEData</entry>
+<entry align="left">out</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">mixture</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left">Documentation for the mixture Flow Property.</entry>
+</row>
+<row><entry align="left">throttlePosition</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left"></entry></row>
+</tbody></tgroup></table>
+</para>
+<para annotations="query flowProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=false showDefaultValue=false">
+This flowProperties query has the showDocumentation for the properties themselves switched off.
+<table frame="all"><title>FS_ICE Flow Properties</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="1*"/><colspec colnum="4" colname="col4" colwidth="12*"/><thead><row><entry align="left">Property</entry><entry align="left">Type</entry><entry align="left">Dir</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">engineData</entry>
+<entry align="left">ICEData</entry>
+<entry align="left">out</entry>
+<entry align="left"></entry></row>
+<row><entry align="left">mixture</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left">A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale.</entry>
+</row>
+<row><entry align="left">throttlePosition</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left">A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale.</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+<para annotations="query flowProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+Flow Properties may be queried with the corresponding query type. This is one such example in tabular form, where all documentation types have been turned on.
+<table frame="all"><title>FS_ICE Flow Properties</title><tgroup cols="5"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="1*"/><colspec colnum="4" colname="col4" colwidth="6*"/><colspec colnum="5" colname="col5" colwidth="6*"/><thead><row><entry align="left">Property</entry><entry align="left">Type</entry><entry align="left">Dir</entry><entry align="left">Property Doc.</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">engineData</entry>
+<entry align="left">ICEData</entry>
+<entry align="left">out</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">mixture</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left">Documentation for the mixture Flow Property.</entry>
+<entry align="left">A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale.</entry>
+</row>
+<row><entry align="left">throttlePosition</entry>
+<entry align="left">Real</entry>
+<entry align="left">in</entry>
+<entry align="left"></entry><entry align="left">A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale.</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Part_Properties">
+<title>Part Properties</title>
+<para annotations="query partProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+<table frame="all"><title>Power Subsystem  Part Properties</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="6*"/><colspec colnum="4" colname="col4" colwidth="6*"/><thead><row><entry align="left">Part</entry><entry align="left">Type</entry><entry align="left">Part Doc.</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">ice</entry>
+<entry align="left">Internal Combustion Engine</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">emotional</entry>
+<entry align="left">Electric Motor Generator</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">acloclalatigra</entry>
+<entry align="left">Accelerator</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">bp</entry>
+<entry align="left">BatteryPack</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">pdu</entry>
+<entry align="left">Power Control Unit</entry>
+<entry align="left"></entry><entry align="left">This is the documentation of the unit which controls the power. </entry>
+</row>
+<row><entry align="left">epc</entry>
+<entry align="left">Electrical Power Controller</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">ft</entry>
+<entry align="left">Fuel Tank Assembly</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">dif</entry>
+<entry align="left">Differential</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">trsm</entry>
+<entry align="left">Transmission</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">fuelSupply</entry>
+<entry align="left">Fuel</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">i1</entry>
+<entry align="left">ElectricCurrent</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">i2</entry>
+<entry align="left">ElectricCurrent</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">t1</entry>
+<entry align="left">Torque</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">t2</entry>
+<entry align="left">Torque</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">g1</entry>
+<entry align="left">Torque</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left"></entry>
+<entry align="left">CAN_Bus</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Value_Properties">
+<title>Value Properties</title>
+<para annotations="query valueProperties showQueriedElementDocumentation=true showTypesDocumentation=true showPropertiesDocumentation=true showDefaultValue=false">
+<table frame="all"><title>Fuel  Value Properties</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="3*"/><colspec colnum="2" colname="col2" colwidth="3*"/><colspec colnum="3" colname="col3" colwidth="6*"/><colspec colnum="4" colname="col4" colwidth="6*"/><thead><row><entry align="left">Property</entry><entry align="left">Type</entry><entry align="left">Property Doc.</entry><entry>Type Doc.</entry></row></thead>
+<tbody>
+<row><entry align="left">temperature</entry>
+<entry align="left">Temp</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">pressure</entry>
+<entry align="left">Press</entry>
+<entry align="left"></entry><entry align="left"></entry></row>
+<row><entry align="left">fuelPressure</entry>
+<entry align="left">Real</entry>
+<entry align="left"></entry><entry align="left">A Real value type represents the mathematical concept of a real number. A Real value type may be used to type values that hold continuous quantities, without committing a specific representation such as a floating point data type with restrictions on precision and scale.</entry>
+</row>
+</tbody></tgroup></table>
+</para>
+</sect2>
+<sect2 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Example_Usage">
+<title>Example Usage</title>
+        <para annotations="html converted">      A query can be added by selecting &quot;SE2: create Query&quot; option. Query can       only be added under a section and chapter. When the add query option is       selected the user will be asked to select the element to be queried.       Later on, changes to specification of a query can be done by changing       the values of query tags in MBDG sub menu in the specification dialog.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Example_Usage__17_0_3_3eff056b_1321444409017_346198_18087">
+<title>queryDialog</title><mediaobject>
+<imageobject>
+<imagedata fileref="queryDialog__17_0_3_3eff056b_1321444376380_740372_18072.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      Specification of the query like specifying the output format to be a       table or paragraph can be done by editing the Representation tag value       like the image below.    </para>  <para annotations="query documentation showQueriedElementDocumentation=false showTypesDocumentation=false showPropertiesDocumentation=false showDefaultValue=false">
+<emphasis role="bold">Environment</emphasis><para annotations="finished doc">
+</para><para></para>
+</para>
+<figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Example_Usage__17_0_3_3f36057b_1321624534619_687442_15371">
+<title>queryDialog2</title><mediaobject>
+<imageobject>
+<imagedata fileref="queryDialog2__17_0_3_3f36057b_1321624505492_294011_15356.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+Representation tag to set the output appearance of the element, in table or paragraph format.
+        <para annotations="html converted">      The type of information to be displayed in the table or paragraph can be       specified through editing the Type tag values. User can choose the       element's documentation, properties, constraints, ports, receptions,       operations etc. to be displayed in the table.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Example_Usage__17_0_3_3f36057b_1321627130961_715018_18438">
+<title>queryDialog3</title><mediaobject>
+<imageobject>
+<imagedata fileref="queryDialog3__17_0_3_3f36057b_1321627108497_390958_18423.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+This image shows the Type tag value that can be specified by the user to query different type of information.
+        <para annotations="html converted">      Additional information regarding the documentation of elements, types or       properties can be chosen to display as a new column in the table.This       can be done by editing the tag values shown in the following image.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Queries__Example_Usage__17_0_3_3f36057b_1321627583488_968917_18465">
+<title>queryDialog4</title><mediaobject>
+<imageobject>
+<imagedata fileref="queryDialog4__17_0_3_3f36057b_1321627554834_892375_18450.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect2>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Using_Generic_Tables">
+<title>Using Generic Tables</title>
+        <para annotations="html converted">      MagicDraw offers the possibility to create generic tables which contain       any kind of information of model element, e.g. documentation, its       members, its operations, etc.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The generic tables can be referenced in a document and are converted       into native Docbook tables.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      A tableDiagram element needs to be created in the model which references       the generic table. The tableDiagram can have a caption text (by default       the name of the generic table is taken).    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Using_Generic_Tables__Diagram_StereotypesAndBlocks"></xref>  shows such a table where the selected element types are Block       and Stereotype and the columns show name, documentation, and members.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      CAVEAT: if the width of the generic table columns is not adjusted       manually, the size is not properly set in MagicDraw (as of 17.0 SP3) and       the generation will fail. Therefore the column width has to be adjusted       the first time the table is created.    </para>  null<table xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Using_Generic_Tables__Diagram_StereotypesAndBlocks" frame="all"><title>Diagram StereotypesAndBlocks</title><tgroup cols="4"><colspec colnum="1" colname="col1" colwidth="5*"/><colspec colnum="2" colname="col2" colwidth="18*"/><colspec colnum="3" colname="col3" colwidth="32*"/><colspec colnum="4" colname="col4" colwidth="43*"/><thead><row><entry align="left">#</entry><entry align="left">Name</entry><entry align="left">Documentation</entry><entry align="left">Member</entry></row></thead>
+<tbody>
+<row><entry align="left">1</entry><entry align="left">CapacityEquation</entry><entry align="left">The documentation of the CapacityEquation</entry><entry align="left">unnamed2=pcap=Sum(Vi)-V1 : Vol-V2 : Vol-V3 : Vol-vc : SysML::Blocks::Real</entry></row><row><entry align="left">2</entry><entry align="left">CapacityContext</entry><entry align="left">The documentation of the CapactiyContext</entry><entry align="left">-ad : HSUVModel::HSUV Structure::AutomotiveDomain [1]-cap : HSUVModel::HSUV Analysis::CapacityEquation</entry></row><row><entry align="left">3</entry><entry align="left">figureImage</entry><entry align="left">        <para annotations="html converted">      To scale a graphic to fit the available width in printed output, use       width=&quot;100%&quot; and scalefit=&quot;1&quot; attributes. For indented text as in a       list, the available width is from the current indent to the right margin.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      To keep a graphic for printed output at its natural size unless it is       too large to fit the available width, in which case shrink it to fit,       use scalefit=&quot;1&quot;, width=&quot;100%&quot;, and contentdepth=&quot;100%&quot; attributes.    </para>  </entry><entry align="left">-imageContainer : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Class-useText : DocBookProfile::usageTextKind-base_Comment : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Comment-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-captionText : SysML::Blocks::String [0..1]-scalefit : Boolean = true-width : Integer = 100-contentdepth : Integer = 100-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element</entry></row><row><entry align="left">4</entry><entry align="left">figureDiagram</entry><entry align="left">        <para annotations="html converted">      To scale a graphic to fit the available width in printed output, use       width=&quot;100%&quot; and scalefit=&quot;1&quot; attributes. For indented text as in a       list, the available width is from the current indent to the right margin.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      To keep a graphic for printed output at its natural size unless it is       too large to fit the available width, in which case shrink it to fit,       use scalefit=&quot;1&quot;, width=&quot;100%&quot;, and contentdepth=&quot;100%&quot; attributes.    </para>  </entry><entry align="left">-diagram : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Diagram-useText : DocBookProfile::usageTextKind-base_Comment : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Comment-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-captionText : SysML::Blocks::String [0..1]-scalefit : Boolean = true-width : Integer = 100-contentdepth : Integer = 100-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element</entry></row><row><entry align="left">5</entry><entry align="left">tableDiagram</entry><entry align="left"></entry><entry align="left">-diagramTable : UML Standard Profile::MagicDraw Profile::DiagramTable [0..1]-base_Class : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Class-captionText : String [0..1]-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element-base_Element : UML Standard Profile::UML2 Metamodel::Classes::Kernel::Element</entry></row></tbody></tgroup></table>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Tables">
+<title>Adding Tables</title>
+<para annotations="paragraph-no-html">
+TBD.</para>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Table_Paragraph">
+<title>Adding a Table Paragraph</title>
+<para annotations="last-resort">        A table paragraph can be created through invocation of &quot;SE2 : create Table     Paragraph&quot; command under Section or Chapter elements etc. The aim of     creating a table paragraph is to allow user to reference the table through     a query mechanism or in normal paragraphs (see <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references"></xref> ) as well as adding     a caption to the table, which would not be possible through normal html     tables. Invoking the &quot;SE2 : create Table Paragraph&quot; command, user will be     asked to fill the caption of the table and then the plugin will generate     an empty stub html table, in which the user can edit it normally. During     the conversion process (generating a pdf) this html table is converted     into a Docbook conform table. An example table is created below (<xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Table_Paragraph__17_0_4_3eee0562_1330844034227_290353_14886"></xref> )  </para>
+<table annotations="tableParagraph" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_a_Table_Paragraph__17_0_4_3eee0562_1330844034227_290353_14886" frame="all"><title> Table Paragraph 1 </title><tgroup cols="2"><colspec colname='c01' /><colspec colname='c11' /><thead><row><entry align="center">&#160;Header1</entry>
+<entry align="center">&#160;Header2</entry>
+</row></thead><tbody><row><entry align="center">&#160;c1</entry><entry align="center">&#160;a1</entry></row><row><entry align="center">&#160;c2</entry><entry align="center">&#160;a2</entry></row><row><entry align="center">&#160;c3</entry><entry align="center">&#160;a3</entry></row><row><entry align="center">&#160;c4</entry><entry align="center">&#160;a4</entry></row><row><entry align="center">&#160;c5</entry><entry align="center">&#160;internal ref &#160;to <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Adding_internal_references"></xref> </entry></row></tbody></tgroup></table></sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Changing_the_ordering_of_elements">
+<title>Changing the ordering of elements</title>
+        <para annotations="html converted">      The ordering of each docbook elements like chapter, section, paragraphs       or diagrams can be changed by drag and drop action. The elements in the       Edit Panel tree can be drag and drop to be placed at a new location       under the same parent or different parents. Note that the movement       should be conformed to DocBook profile, for e.g. a paragraph cannot be       moved under a bibliography element.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Generating_the_final__Document">
+<title>Generating the final  Document</title>
+        <para annotations="html converted">      In order to generate your DocBook document you must select an element of       type book in your model (there might be more than one in there) from the       content tree, and use the action &quot;MBSE-&gt;SE:&#160;Generate DocBook&quot;.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      The final artifact of the generation process is a standard PDF file,       produced by means of XSL transformation from a generated XML&#160;file. These       two steps are available as separate actions from the user interface with       the Actions &quot;Generate PDF&quot;, &quot;Generate XML&quot; respectively. A third step       &quot;Generate XML to PDF&quot; is available to carry out the XSLT&#160;step only.    </para>    <para annotations="html converted">      The specific XSLT to be used can be selected from MagicDraw from the       menu &quot;Options&quot;, then &quot;Environment&quot; and then selecting the MBSE group,       which looks like in <xref linkend="Model_Based_Document_Generation_User_Manual__Instructions__Generating_the_final__Document__17_0_4_4135058a_1331711184583_260759_18427"></xref> . A&#160;file chooser permits the selection of the       appropriate XSLT&#160;file.    </para>    <para annotations="html converted">      The currently shipped XSL&#160;transformations are briefly outlined in       <xref linkend="Model_Based_Document_Generation_User_Manual__Installation__Transformation_XSL"></xref> .    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      If the model which you're using is coming from the Teamwork Server, a       file chooser dialog will appear. Once the file has been chosen the       generation will start (no progress bar is available) and the plug-in       will notify you of the successful completion with an acknowledgment       pop-up.    </para>    <para annotations="html converted">      The file chooser remembers the selected directory across multiple       generations.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Notice that the chosen directory will be populated with all the images       which are required to produce the XML&#160;and PDF&#160;files. The presence of       many diagrams and external images may contribute significantly to the       generation time.    </para>  <figure annotations="figureimage" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Generating_the_final__Document__17_0_4_4135058a_1331711184583_260759_18427">
+<title>xsltSelector</title><mediaobject>
+<imageobject>
+<imagedata fileref="xsltSelector__17_0_4_4135058a_1331711128829_71469_18419.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Model_Diagrams">
+<title>Adding Model Diagrams</title>
+<para annotations="paragraph-no-html">
+Model Diagrams can be added using the SE2: add Figure Diagram function which is available for chapters and sections.The action pops up a mask for entering a caption, and a selector window which allows to select one Diagram within the current module.By modifying the MBDG properties additional features like the size or the location of the documentation text may be chosen.The first figure below has the documentation after the image itself.</para>
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Model_Diagrams__17_0_4_4135058a_1336658133410_398551_18756">
+<title>Figure B.34 Decomposition of "Accelerate" Function</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="FigureB.34DecompositionofAccelerateFunction__16_0beta1_1b500480_1221801919379_884034_7426.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+a Diagram Figure B.34 Decomposition of "Accelerate" Function. This is shown after the image.
+<figure annotations="figure diagram" xml:id="Model_Based_Document_Generation_User_Manual__Instructions__Adding_Model_Diagrams__17_0_4_4135058a_1336658476145_48771_18797">
+<title>Establishing HSUV Requirements Hierarchy</title>
+<mediaobject>
+<imageobject>
+a Diagram Establishing HSUV Requirements Hierarchy: this is shown before  the image.
+<imagedata fileref="EstablishingHSUVRequirementsHierarchy__16_0beta1_1b500480_1221560155508_862195_6829.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Installation" >
+   <title>Installation</title>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Installation__MagicDraw_Plugin">
+<title>MagicDraw Plugin</title>
+        <para annotations="html converted">      The plugin can be downloaded from SourceForge at:&#160;       http://sourceforge.net/projects/mbse4md/.     </para>    <para annotations="html converted">      Please consult the README&#160;file for complete installation instructions.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Installation__Transformation_XSL">
+<title>Transformation XSL</title>
+        <para annotations="html converted">      In MagicDraw's Options-&gt;Environment-&gt;MBSE you select the appropriate       transformation file:    </para>    <itemizedlist>      <listitem><para annotations="html converted">        ESOTransform.xsl      </para></listitem>      <listitem><para annotations="html converted">        SE2Transform.xsl: refines ESOTransform by adding different logo and         different rendering of the book information      </para></listitem>      <listitem><para annotations="html converted">        ELTTransform.xsl:&#160;refines ESOTransform by adding different logo         and different rendering of the book information, specific to         ESO&#160;EELT&#160;project.      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      Furthermore, you select if a &quot;Draft&quot; Watermark is added.    </para>  </sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Maintenance" >
+   <title>Maintenance</title>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Maintenance__Extension_Procedure">
+<title>Extension Procedure</title>
+        <para annotations="html converted">      After initial release, changes to this plug-in will have to be       coordinated by the SE2 Challenge team members.    </para>  </sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Maintenance__Fault_identification_procedure">
+<title>Fault identification procedure</title>
+<para annotations="paragraph-no-html">
+Not applicable.</para>
+</sect1>
+<sect1 xml:id="Model_Based_Document_Generation_User_Manual__Maintenance__Diagnostic_tools_and_procedures">
+<title>Diagnostic tools and procedures</title>
+</sect1>
+</chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Known_Problems" >
+   <title>Known Problems</title>
+        <itemizedlist>      <listitem><para annotations="html converted">        DO NOT copy/paste from word into HTML (hidden formatting instructions         are copied as well). cut &amp; paste into ASCII FIRST and then turn on         HTML.      </para></listitem>      <listitem><para annotations="html converted">        Very rarely the edit panel displays the document twice.      </para></listitem>    </itemizedlist>  </chapter>
+<chapter xml:id="Model_Based_Document_Generation_User_Manual__Future_Enhancements" >
+   <title>Future Enhancements</title>
+        <itemizedlist>      <listitem><para annotations="html converted">        Add a shortcut key for the generation      </para></listitem>      <listitem><para annotations="html converted">        Direct editing of paragraphs in preview panel      </para></listitem>      <listitem><para annotations="html converted">        Drag'n'drop of diagrams directly into the preview panel      </para></listitem>      <listitem><para annotations="html converted">        More sophisticated queries      </para></listitem>      <listitem><para annotations="html converted">        The file chooser for book generation should only display XML files.      </para></listitem>    </itemizedlist>  </chapter>
+</book>

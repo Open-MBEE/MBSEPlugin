@@ -1,0 +1,194 @@
+Release Notes
+=============
+RELEASE 17.0.5 2014-09-17 
+
+Added rename functionality for system elements: if the modeler renames
+	  the block then all the packages which were created with the
+	  getTemplate facility will be renamed accordingly.
+
+Initial implementation of a simple safety computation, based on a dedicated profile done
+	  at ESO.
+	  For the time being this is merely listing all the elements from a
+	  Hazard to the BasicFaults leading to it.
+	  Value tags like probability, MTBF and such may be added to the
+	  output later, for using it with either spreadsheet calculations
+	  or in other ways.
+	  Work in progress.
+
+Added initial support for GenericTables using metachains. 
+Also added "micro" character to HTML conversion.
+
+Measures related to MDUMLCS-13047:  DependencyMatrix Diagrams are recomputed prior to 
+      exporting them, in order to avoid the meaningless empty diagrams which have bothered us for so long. 
+
+MBDG-135: added useDocumentation also for tableDiagram handling.
+	  
+Better aproach to unicode storage in the source code: a better library for conversion 
+      still needs to be identified though.
+
+MBDG-130: port MBSE plugin to MD 17.0.5, removed some deprecated methods.
+MBDG-135: You cannot put in a DocBook the documentation of a diagram, but only
+	  of a block. Fixed.
+	  Added initial implementation to processFigureDiagram() after corresponding modification 
+	  of the DocBookProfile. The tag "useDocumentation" is a boolean, but it is only
+	  considered if the useText is set to no.
+	  
+	  Notice that there is no way (or at least I could not find any) to
+	  restrict the documentation to only the one show in the lower left
+	  corner of MagicDraw.
+	  That means, the content of *all* comments for which the specific
+	  diagram is the annotated element will be shown.
+
+Added MBSE option to clean-up the image files.
+	  This is only done when PDF generation is requested, after it has
+	  been done.
+
+Added initial support for DependencyMatrix.
+	  It had been errenously assumed that DiagramTable would generalize
+	  DependencyMatrix, but in practice a DependencyMatrix stereotype
+	  does not have the wealth of tags used for table formatting which
+	  DiagramTable has.
+	  For this purpose the method processDiagramTable() was modified to
+	  check which stereotype is applied to the Diagram referred by the
+	  <<tableDiagram>> element. If the diagram is not stereotyped by
+	  <<DiagramTable>>, then an image will be generated (and not a
+	  DocBook table as in the other case).
+
+Added a check in case the user did not specify HTML elements in the Table
+	  Paragraph.
+
+Avoiding ElementsSelectionDialog to show also elements under Diagrams.
+	  Replaced some deprecated methods.
+
+convertHTML2DocBook: now intercepting non HTML code and replacing
+	  < and > by the corresponding proper HTML tags.
+
+Array out of bounds related to MBDG-128: fixed.
+Modified launch properties according to MDUMLCS-11380
+
+MBDG-128:  Facilitate modeling of "configuration item IDs" , only relevant
+	  for ESO: improved the visualization of PresentationElement, which
+	  now visualizes automatically the tagged values.
+	  Initial implementation of comfort routine to add configuration
+	  item number to some structural parts of a model.
+	  This is a diagram context menu action which sets a stereotype and
+	  pops up a panel to enter a number for the tagged value.
+	  This is of interest to ESO only and a way shall be found to
+	  prevent this function to pop-up outside the ESO LAN.
+
+
+
+Release 17.0.4SP1 2013-09-03
+* Ajdust release with MD release numbers
+* JIRA MBDG-14: hyperlinking to diagram/table when creating figureDiagram/tableDiagram
+* use ${magic_draw_home} sting substitution variable in debug launcher instead of hardcoded path
+* fixed debug launcher: wrong project name and missing -verbose application argument
+* ask user to overwrite files for PDF and direct-PDF generation. NOT for XML only
+* .gitignore file added for git-svn users
+* patch: column count for tableParagraph, wrong regexp was used before.
+* patch: skip recreation of XML file when 'SE2:Generate XML to PDF' action selected
+* protected against NPE in getChildCount() method.
+* Method deleteGeneratedImages() added to clean up the image files which would otherwise clutter the test directory and annoy with SVN commits.
+* Relocated and renamed more Actions.
+* Some minor cleanup on CommonGenerator, but much more needs to be done.
+* Renamed MBSEDocAction to a more meaningful name.
+* Removed unused HtmlGenerator, XmlGenerator: they were not being used and contained anyway a large chunk of code in common with the "CommonGenerator". Should they be reintroduced in the future, I would opt for subclassing/enhancing CommonGenerator
+* MBSEBrowserConfigurator: done some cleanup on java packages fully qualified names usage.
+* relocated additional classes to the reasoner package. 
+* Removed unused classlocator package.
+* Removed unused Wrapper and SpringUtilities classes.
+* .launch file modified to have memory increased when running Variants tests, which else will fail (from within Eclipse, and from my machine).
+* .classpath modified to remove  jarfile coming from Cameo Simulation Toolkit (this should make it independent of which CST version is installed).
+* removed metrics packages. 
+* relocated several (but not all) actions to proper packages.
+* CLEANUP command line argument may now be provided to determine whether the output files will be cleaned up or not.
+* Notice that the existing *.png files stored in the test directory are unaffected by this.
+* forcing PNG as diagram image format in order to minimize changes
+* with existing XML file (it also looks nicer when watching PDF files from Oxygen).
+* Also renamed _rep into _out for XML files obtained as output.
+* org.eso.sdd.mbse.doc.algo.CommonGenerator
+* Added a method to substitute char in file names.
+* Made the export format of diagrams configureable and set the default to SVG. 
+* org.eso.sdd.mbse.doc.options.MBSEOptionsGroup
+* org.eso.sdd.mbse.doc.options.EnvironmentOptionsResources.properties
+* Added the configuration for the diagram file format
+* Fixed some bugs with the ID for the properties file
+* Did some clean up (removed the example code)
+* align plugin version with MD version it supports, i.e. 17.0.2; SP are plugin specific
+
+Release 1.2SP5 2013-01-26
+1) handle in system reasoner also Real, Integer and Natural Literals for Default Values
+2) added getMass for a mass value property rollup.
+
+Release 1.2SP4 2013-01-08
+1) Upgrade to MD 17.0.2
+2) use comma as line seaparator for biblio entries and do not put a comma after the pubdate as it is the last entry
+3) do not replace bracket characters in documentation of elements which are queried, otherwise the HTML markup is lost and 
+pre/post coments for diagrams would not show up
+4) support proxy and full ports for SysML 1.3
+5) support shared and reference properties
+
+Release 1.2SP3 2012-09-12
+1) handle bracket characters in element names when carrying out queries
+2) display full stack trace when an exception occurs
+3) handle indexing problem in preview  
+
+Release 1.2SP2 2012-09-10
+1) Upgrade samples and profiles to MD 17.0.2
+2) Fix problem in columns header names for diagram tables (ID was used instead of name)
+
+Release 1.2SP1 2012-09-02
+1) fix problem with before/after tag for figure image
+2) added menu for programlisting
+3) fix output of string "null" for diagramtables and querying requirements
+4) open node in containment tree as soon as selected in edit panel 
+5) correct table/paragraph representation for queries on multiple elements
+
+Release 1.2 2012-08-31
+1) Activated integration test based on 4 different documents based on XML comparison
+2) Fixed some bugs in HTML and special character conversion
+3) Added support docbook Program Listing element
+4) Fix problem in handling text (before, after) of figure diagrams
+5) Clean up code to reduce number of warnings
+6) Fix caption handling for figure images
+7) Fix problem with table headers in paragraphs
+
+Release 1.1SP1 2012-04-17
+1) fix a bug when processing figure diagrams which causes an exception
+
+Release 1.1 2012-04-13
+-----------------------
+1) General
+Fix correct install/uninstall of plugin
+
+2) Document Generator
+a) Support for German Umlaute
+b) Support HTML in Authors
+c) Various bug fixes
+   * handle multiple open projects
+   * better handling of special and invalid characters
+   * handle multiple stereotypes on docbook elements
+   * support divisions and parts in edit panel
+   * handle non word characters for docbook ID
+   * caption text used for figureImage
+   * support internal document references in HTML tables
+
+3) Systems Reasoner
+a) Provide a Wizard to apply reasoning patterns to a model and execute them
+with the MagicDraw Simulation toolkit.
+b) The simple GetCost and GetPower actions still work on the fixed named value properties cost and power.
+
+Read the (generated) User Manual for further details.
+
+4) Variant Management
+Make Variant Management function available in the menu.
+Generate UM with document generator.
+
+5) Modelling Support for SE2 Cookbook Recommendations
+Align the templates with the current Cookbook version.
+
+See the (generated) Cookbook Part I for details.
+
+
+Initial Release 1.0 2012-03-10
+------------------------------

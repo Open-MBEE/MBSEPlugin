@@ -1,0 +1,1 @@
+the integration test is to be run from Eclipse, selecting IntegrationTest.java and  doing a right-clik Run As -> Java Application.

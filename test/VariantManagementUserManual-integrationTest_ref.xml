@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+<info>
+<subtitle>Variant Management User Manual</subtitle>
+<productnumber>SE2-UM-01</productnumber>
+<pubdate>31 March 2012</pubdate>
+<issuenum>1</issuenum><author role="owner">
+<personname><firstname>Bertil</firstname>
+<surname>Muth</surname>
+</personname>
+<affiliation><orgname>HOOD</orgname></affiliation>
+</author>
+<author role="wpManager">
+<personname><firstname>Bertil</firstname>
+<surname>Muth</surname>
+</personname>
+<affiliation><orgname>HOOD</orgname></affiliation>
+</author>
+<author role="releaser">
+<personname><firstname>Robert</firstname>
+<surname>Karban</surname>
+</personname>
+<affiliation><orgname>ESO</orgname></affiliation>
+</author>
+<author role="author">
+<personname><firstname>Bertil</firstname>
+<surname>Muth</surname>
+</personname>
+<affiliation><orgname>HOOD</orgname></affiliation>
+</author>
+</info>
+<bookinfo>
+<revhistory xml:id="Variant_Management_User_Manual__RevisionHistory">
+<revision xml:id="Variant_Management_User_Manual__RevisionHistory__1__17_0_4_38380511_1333211247452_267026_20683">
+<revnumber>1</revnumber>
+<date>2012-03-31</date>
+<revdescription>all</revdescription>
+<author><personname>Bertil Muth</personname></author>
+<revremark><para>Initial Revision</para></revremark>
+</revision>
+</revhistory>
+</bookinfo>
+<chapter xml:id="Variant_Management_User_Manual__Introduction" >
+   <title>Introduction</title>
+<sect1 xml:id="Variant_Management_User_Manual__Introduction__Purpose">
+<title>Purpose</title>
+        <para annotations="html converted">      The purpose of the Variant Management function is to transform a source       UML or SysML model, the &quot;product family model&quot;, into a target model,&#160;the       &quot;product model&quot;.    </para>    <para annotations="html converted">      The product model contains a subset of the variants modeled in the       product family model.    </para>    <para annotations="html converted">      The user of the Variant Management function can pick which variants to       include in the product model using a graphical user interface, and       specify a file system location. The function then creates the product       model's project at the specified location and removes the variants that       have not been picked by the user from the product model.    </para>  </sect1>
+<sect1 xml:id="Variant_Management_User_Manual__Introduction__Prerequisites">
+<title>Prerequisites</title>
+        <para annotations="html converted">      The product family model must be modeled in MagicDraw according to the       definitions of the &quot;Cookbook for MBSE with SysML&quot;.    </para>    <para annotations="html converted">      In order to do that, the product family model must contain a profile       that defines certain stereotypes for variant management, as shown in the       following picture:    </para>  <figure annotations="figureimage" xml:id="Variant_Management_User_Manual__Introduction__Prerequisites__17_0_4_38380511_1333211247458_429460_20734">
+<title>A profile for variant management</title><mediaobject>
+<imageobject>
+<imagedata fileref="Aprofileforvariantmanagement__17_0_4_38380511_1333211247452_703354_20682.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      Note that the se2. prefix is optional, so you could for example use       &lt;&lt;Variations Aspect&gt;&gt; or &lt;&lt;Variation&gt;&gt; as stereotypes in your product       family model's profile instead.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Both the SE2Profile and the SYSMOD profile contain the above stereotypes       and can be used in your projects. Alternatively, you can have a look at       the test/variantmodels folder for a minimum profile that can be used in       your product family model.    </para>  </sect1>
+<sect1 xml:id="Variant_Management_User_Manual__Introduction__How_this_document_was_made">
+<title>How this document was made</title>
+        <para annotations="html converted">      This document was generated from the MagicDraw model       &quot;VariantManagementUserManual&quot; located in the samples folder.    </para>  </sect1>
+<sect1 xml:id="Variant_Management_User_Manual__Introduction__Copyright">
+<title>Copyright</title>
+        <para annotations="html converted">      The software described in this document is subject to the following       copyright statement:    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * (c) INCOSE SE2 Challenge Team for Telescope Modeling 2011    </para>    <para annotations="html converted">      * Copyright by ESO, HOOD, TUM, oose, GfSE    </para>    <para annotations="html converted">      * All rights reserved    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is free software; you can redistribute it and/or    </para>    <para annotations="html converted">      * modify it under the terms of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License as published by the Free Software Foundation; either    </para>    <para annotations="html converted">      * version 2.1 of the License, or (at your option) any later version.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * This library is distributed in the hope that it will be useful,    </para>    <para annotations="html converted">      * but WITHOUT ANY WARRANTY; without even the implied warranty of    </para>    <para annotations="html converted">      * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU    </para>    <para annotations="html converted">      * Lesser General Public License for more details.    </para>    <para annotations="html converted">      *    </para>    <para annotations="html converted">      * You should have received a copy of the GNU Lesser General Public    </para>    <para annotations="html converted">      * License along with this library; if not, write to the Free Software    </para>    <para annotations="html converted">      * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA    </para>    <para annotations="html converted">      *    </para>  </sect1>
+</chapter>
+<chapter xml:id="Variant_Management_User_Manual__The_Variant_Management_Function" >
+   <title>The Variant Management Function</title>
+        <para annotations="html converted">      1. Open MagicDraw and open the MagicDraw project that contains the       product family model.    </para>          <para annotations="html converted">      2. Right click on a package, select MBSE &gt; &quot;SE2: manageVariations&quot;.    </para>          <para annotations="html converted">      3. The function shows the graphical user interface. This is what it       looks like for the APE model:    </para>  <figure annotations="figureimage" xml:id="Variant_Management_User_Manual__The_Variant_Management_Function__17_0_4_38380511_1333211247450_911511_20670">
+<title>The user interface for selecting variants</title><mediaobject>
+<imageobject>
+<imagedata fileref="Theuserinterfaceforselectingvariants__17_0_4_38380511_1333211247451_881673_20681.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      4. Check the variants that you want to be included in the product model.    </para>          <para annotations="html converted">      5. Select File &gt; &quot;Create product model..&quot; from the dialogs menu.    </para>          <para annotations="html converted">      6. Select a destination where you want to save the product model's       project (make sure it is different from the product family project's       location).    </para>          <para annotations="html converted">      7. Wait until the progress bar at the bottom of the dialog shows       completion.&#160;    </para>          <para annotations="html converted">      As a result of running the plugin, a product model is created that       contains only the selected variants. All other variants are deleted from       that model, so <emphasis role="bold">do not overwrite your product family model.</emphasis>    </para>  </chapter>
+<chapter xml:id="Variant_Management_User_Manual__Further_Features" >
+   <title>Further Features</title>
+<para annotations="paragraph-no-html">
+You can save configurations and open them again (see File menu). Saving a configuration means: saving the state of the checkboxes plus the path to the product family model's project in one XML file. If you open a configuration XML file later on, these settings will be restored. If you create a product model after opening a configuration, the product family model's project saved in the configuration is loaded before the product model is created.</para>
+</chapter>
+<chapter xml:id="Variant_Management_User_Manual__Limitations_and_Known_Issues" >
+   <title>Limitations and Known Issues</title>
+<para annotations="paragraph-no-html">
+1. Teamwork server projects are not supported for product family models.</para>
+<para annotations="paragraph-no-html">
+2. No dependencies between variants may be specified.</para>
+<para annotations="paragraph-no-html">
+3. No refactoring of the product model is performed, just deletion of the variant packages that have not been picked by the user.</para>
+<para annotations="paragraph-no-html">
+4. So far, only little documentation is available.</para>
+</chapter>
+<chapter xml:id="Variant_Management_User_Manual__Release_History" >
+   <title>Release History</title>
+        <table border="1" cellpadding="0" cellspacing="0">      <tr>                <td style="padding-left:5.4pt;padding-bottom:0cm;background-repeat:repeat;border:solid windowtext 1.0pt;padding-top:0cm;width:91.8pt;background-attachment:scroll;background-color:silver;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            Date          </para>        </td>                <td style="padding-left:5.4pt;padding-bottom:0cm;background-repeat:repeat;border:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;background-attachment:scroll;background-color:silver;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            Release          </para>        </td>                <td style="padding-left:5.4pt;padding-bottom:0cm;background-repeat:repeat;border:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;background-attachment:scroll;background-color:silver;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            Author          </para>        </td>                <td style="padding-left:5.4pt;padding-bottom:0cm;background-repeat:repeat;border:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:207.0pt;background-attachment:scroll;background-color:silver;padding-right:5.4pt;" width="276" valign="top">          <para annotations="html converted">            Change description          </para>        </td>            </tr>      <tr>                <td style="padding-bottom:0cm;padding-left:5.4pt;border-top:none;padding-right:5.4pt;width:91.8pt;border:solid windowtext 1.0pt;padding-top:0cm;" width="96" valign="top">          <para annotations="html converted">            25 July 2011          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            V0.1.1          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            Bertil Muth          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:207.0pt;border-top:none;padding-right:5.4pt;" width="276" valign="top">          <para annotations="html converted">            Contributed code.          </para>        </td>            </tr>      <tr>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:none;padding-top:0cm;border-left:solid windowtext 1.0pt;width:91.8pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            24 October 2011          </para>        </td>                <td style="padding-bottom:0cm;padding-left:5.4pt;padding-right:5.4pt;border-right:solid windowtext 1.0pt;width:72.0pt;border:none;padding-top:0cm;" width="96" valign="top">          <para annotations="html converted">            V0.1.2          </para>        </td>                <td style="padding-bottom:0cm;padding-left:5.4pt;padding-right:5.4pt;border-right:solid windowtext 1.0pt;width:72.0pt;border:none;padding-top:0cm;" width="96" valign="top">          <para annotations="html converted">            Bertil Muth          </para>        </td>                <td style="padding-bottom:0cm;padding-left:5.4pt;padding-right:5.4pt;border-right:solid windowtext 1.0pt;width:207.0pt;border:none;padding-top:0cm;" width="276" valign="top">          <para annotations="html converted">            Added Help menu.          </para>          <para annotations="html converted">            Integrated plugin into MBSE plugin          </para>          <para annotations="html converted">            Updated documentation.          </para>        </td>            </tr>      <tr>                <td style="padding-bottom:0cm;padding-left:5.4pt;border-top:none;padding-right:5.4pt;width:91.8pt;border:solid windowtext 1.0pt;padding-top:0cm;" width="96" valign="top">          <para annotations="html converted">            31 December 2011          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            V0.1.3          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          <para annotations="html converted">            Carlos Ortega          </para>        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:207.0pt;border-top:none;padding-right:5.4pt;" width="276" valign="top">          <para annotations="html converted">            Enabled modeling of more than one top level variations aspect.          </para>        </td>            </tr>      <tr>                <td style="padding-bottom:0cm;padding-left:5.4pt;border-top:none;padding-right:5.4pt;width:91.8pt;border:solid windowtext 1.0pt;padding-top:0cm;" width="96" valign="top">          31 March 2012        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          V0.1.4        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:72.0pt;border-top:none;padding-right:5.4pt;" width="96" valign="top">          Bertil Muth        </td>                <td style="border-right:solid windowtext 1.0pt;padding-left:5.4pt;padding-bottom:0cm;border-bottom:solid windowtext 1.0pt;padding-top:0cm;border-left:none;width:207.0pt;border-top:none;padding-right:5.4pt;" width="276" valign="top">          <para annotations="html converted">            Added more flexibility concerning used stereotypes and profiles.             Added Carlos Ortega as contributor in Help menu. Added unit tests             to the variants package (test package). Moved documentation to own             MagicDraw model.          </para>        </td>            </tr>        </table>  </chapter>
+</book>

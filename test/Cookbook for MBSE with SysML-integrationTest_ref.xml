@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0">
+
+<info>
+<subtitle>Cookbook for MBSE with SysML</subtitle>
+<publishername>SE2</publishername>
+<issuenum>1</issuenum><title>SE2</title></info>
+<part xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling" >
+<info>
+<title>MBSE in Telescope Modelling</title>
+</info>
+<partintro><para> </para></partintro>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Introduction" >
+   <title>Introduction</title>
+                  <para annotations="html converted">      In the framework of INCOSE's strategic initiative, the Systems       Engineering Vision 2020, one of the main areas of focus is model-based       systems engineering. In keeping with this emphasis, the European       Southern Observatory (ESO; <emphasis role="underline">http://www.eso.org/</emphasis>)       is collaborating with the German Chapter of INCOSE (<emphasis role="underline">http://www.gfse.de/</emphasis>)       in the form of an "MBSE Challenge" team. The team's task is to       demonstrate solutions to challenging problems using MBSE. The Active       Phasing Experiment (APE; see Gonte et al. 2004), a European Union       Framework Program 6 project, was chosen as the subject of the SE^2       Challenge Team (<emphasis role="underline">http://mbse.gfse.de/</emphasis>).       Many technical products in the telescope domain show an increasing       integration of mechanics with electronics, information processing, and       also optics, and can therefore be rightly considered as optomechatronic       systems.    </para>    <para annotations="html converted">      This article presents the results of model-based systems engineering       using the Systems Modeling Language (SysML; see Ogren 2000), drawing on       experiences within the MBSE Challenge project and also the European       Extremely Large Telescope (E-ELT) project. For the former project, SysML       models were created by reverse engineering from existing documentation       and from interviews with systems engineers, whereas for the latter       project, the practices were applied to a new system. We will make use of       Ingmar Ogren's concept of a common project model (Ogren 2000) to       establish a common understanding of the system.    </para>  </chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Project_Description" >
+   <title>Project Description</title>
+        <para annotations="html converted">      Our system case study is the Active Phasing Experiment technology       demonstrator for the future European Extremely Large Telescope, which is       a high-tech, interdisciplinary optomechatronic system in operation at       the Paranal observatory (see ESO 2009). The next generation of       telescopes needs to collect significantly more light than older models,       therefore requiring bigger reflecting surfaces that consist of many       individual mirror segments. Due to different disturbances (such as       vibrations, wind, and gravity), the segments must be actively controlled       to get a continuous mirror surface with a phasing error of only a few       nanometers over the main mirror's diameter of 42 m. The main challenge       is to correctly detect the positioning errors of the segments via       specific phasing sensors in order to create a continuous mirror surface.    </para>    <para annotations="html converted">      APE was developed to evaluate those sensors, and was installed on one of       the 8 m telescopes that constitutes part of the Very Large Telescope in       Chile (VLT) for sky tests. APE can be seen as the black box in <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Project_Description__16_6_1_382c0508_1273337594781_678737_17350"></xref> .       For the installation it had to comply with various mechanical,       electrical, optical, and software interfaces. APE consists of about two       hundred sensors and actuators such as wheels, translation stages,       lenses, detectors, mirrors, light sources, an interferometer, and twelve       computing nodes for control. Since APE had to be deployed in the test       lab and in an already existing telescope, for each context it was       necessary to model variants of function, interfaces, and structure. All       of these characteristics made APE well suited to evaluate the potential       of SysML in tackling similar issues.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Project_Description__16_6_1_382c0508_1273337594781_678737_17350">
+<title>Active Phasing Experiment at the Very Large Telescope</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="APEatU1__16_6_1_382c0508_1273337531203_601860_17325.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__MBSE_Challenge_Goals" >
+   <title>MBSE Challenge Goals</title>
+                  <para annotations="html converted">      SysML is only a graphical language and defines a set of diagrammatics,       modeling elements, a formal syntax, and semantics. Like any language       (formal or informal), it can be used in many different ways, including       many wrong ways. Most notably, it is possible by misusing the language       to create incorrect models. The main goals of the SE^2 MBSE Challenge       Team are to    </para>    <para annotations="html converted">          </para>    <itemizedlist>      <listitem><para annotations="html converted">        create modeling guidelines and conventions for all system aspects,         hierarchy levels, and views;      </para></listitem>      <listitem><para annotations="html converted">        provide examples in SysML, solving common modeling problems;      </para></listitem>      <listitem><para annotations="html converted">        build a comprehensive model, which serves as the basis for providing         different views to different engineering aspects and subsequent         activities; and to      </para></listitem>      <listitem><para annotations="html converted">        demonstrate that SysML is an effective means to support systems         engineering.      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      The SE^2 team has provided their guidelines for modeling on the       "frequently asked questions" page of their Web site       (http://mbse.gfse.de/documents/faq.html). A SysML model, as described in       the next section, illustrates the results of their comprehensive       modeling. The SysML model is not merely a mental abstraction, but a       collection of complex data structures that can be edited, augmented,       queried, and reported on by means of a suitable tool, which is an       indispensible pillar for MBSE.    </para>  </chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Model_Structure_and_Overview" >
+   <title>Model Structure and Overview</title>
+                  <para annotations="html converted">      Modeling is all about abstraction (reducing the complexity of a system),       improving communication and understanding of the system, and providing       reusable system elements. However, capturing a lot of different aspects       like requirements, structure, interfaces, behavior, and verification in       a model of a complex system like APE leads to a large model. Therefore,       the first challenge is to find a clear, intuitive structure for the       model, since a well-structured model is crucial for controlling       complexity.    </para>    <para annotations="html converted">      In the APE model we applied two techniques to establish a good and       easily understandable structure: recursive structure patterns and views.       In SysML, packages are the structuring mechanism to group model       elements, which were used by the authors for both techniques. Packages       are a mechanism to group model elements in higher-level units, similar       to the way folders organize files in a computer's file system.    </para>  </chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern_" >
+   <title>APE Model Structure Pattern </title>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Introduction">
+<title>Introduction</title>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams">
+<title>Overview Diagrams</title>
+        <para annotations="html converted">      To further improve the understandability of the APE model content       diagrams are provided, which describe the system by showing all the       different aspects captured by the model. The top-level overview diagram       is a "project content" diagram <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273317301609_847013_15584"></xref>  and serves as an entry point and       an anchor for navigation through the complex model.    </para>          <para annotations="html converted">      The System Structure View ("APE_Structure" in <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273317301609_847013_15584"></xref> ) is used to       decompose the system and provide the recursive modeling pattern within       the subsystem package; for example, the "APE_Structure" sub-package       "InternalMetrology" contains the same view packages, the       "InternalMetrology" sub-package "PhaseModulator" <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273318014953_656963_15706"></xref>  contains again       the same view packages, and so on.     </para>                    <para annotations="html converted">      For every system decomposition element (like the nested structure view       for the &quot;InternalMetrology&quot; in <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273318014953_656963_15706"></xref> ), a package exists together with       an overview diagram that shows the aspect packages of the respective       element. The arrows between the packages show their dependencies. This       recursive model structure provides an intuitive look-and-feel navigation       capability within the APE model.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273317301609_847013_15584">
+<title>APE project-content diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="APE_Content__16_0_1_384e0516_1246359317322_432412_40754.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Overview_Diagrams__16_6_1_382c0508_1273318014953_656963_15706">
+<title>Subsystem content diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="InternalMetrology_Content_Doc__16_6_1_415c058c_1267091005703_656333_12258.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Aspects">
+<title>Aspects</title>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements_">
+<title>Objectives and Requirements </title>
+        <para annotations="html converted">      APE, like any complex system, has a large number of functional,       performance, physical, and interface requirements that have to be       satisfied. This implies the need for formal requirements management       during the project. APE has about 50 high-level system requirements. The       control system has also about 50 requirements, refined by 150 use cases.       We used the SysML requirements diagrams to show the main objectives of       APE (<xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements___16_6_1_382c0508_1273339599359_662152_17823"></xref> ). The limitations of standard text-based       requirements-management tools were overcome by visualizing key       requirements and their impact on system design and verification in an       intuitive way.    </para>          <para annotations="html converted">      The following user defined types extend the SysML requirements modeling       features to organize and trace objectives, business and system       requirements of APE. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements___16_6_1_382c0508_1273340212453_340671_18393"></xref>  shows the dependencies of the requirements       and automatically created traceability matrices. In the figure,       objectives are project-specific stereotypes of a class to capture the       objectives for the projects (see <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements___16_6_1_382c0508_1273339599359_662152_17823"></xref> ); stakeholder requirements are       project-specific stereotypes of a SysML requirement to capture the       high-level requirements for the projects; and for the system       requirements, SysML requirements are used to capture the detailed       requirements for the projects.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements___16_6_1_382c0508_1273339599359_662152_17823">
+<title>APE objectives diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="System Objectives_Content__16_5_3_38250506_1252605901699_459619_8329.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Objectives_and_Requirements___16_6_1_382c0508_1273340212453_340671_18393">
+<title>Traceability among different types of requirements</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="APE_Traceability_Content__16_6_1_38390513_1263325497978_481413_9789.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Context_">
+<title>Context </title>
+        <para annotations="html converted">      The system's context defines the system's boundaries and is modeled       using SysML internal block diagrams. A SysML internal block diagram       (IBD) shows a block, its parts, and its interfaces. For the system       context our main focus is on system interfaces.    </para>    <para annotations="html converted">      SysML uses ports to model the interfaces of a block. SysML provides a       standard port for service-like interfaces and flow ports for physical       interfaces. However, there are different possibilities to use these       ports for capturing system interfaces (see <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Context___16_6_1_382c0508_1273340417671_180327_18418"></xref> ):    </para>    <itemizedlist>      <listitem><para annotations="html converted">        Standard ports to model abstract interfaces as representation of an         interface control document (ICD) as shown for port "scp"      </para></listitem>      <listitem><para annotations="html converted">        Flow ports for a combination of mechanical and flow interface at block         level (model physical and logical properties at the border of a block,         hiding its internals), as shown for port "15-N-A"      </para></listitem>      <listitem><para annotations="html converted">        Model mechanical and flow interface directly at the specific part         level, as shown for "coolantReturn" and "coolantSupply," crossing the         border of the outer part      </para></listitem>      <listitem><para annotations="html converted">        Model mechanical and flow interface at block and part level, as shown         for port "15-N-C"      </para></listitem>    </itemizedlist>    <para annotations="html converted">          </para>    <para annotations="html converted">      To ensure consistency between the interface control document and the       model, the latter serves as the basis for the former. &lt;token&gt; shows the       context of the telescope from an electrical viewpoint (ports on control       system side are not modeled).    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Context___16_6_1_382c0508_1273340417671_180327_18418">
+<title>Internal block diagram of electrical context</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="ObservatoryContext_Electrical__15_0_baa02e2_1202884097176_74702_3237.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___System_Structure">
+<title>System Structure</title>
+        <para annotations="html converted">      The system structure is maybe the most self-evident aspect to model. We       have used SysML block definition diagrams (BDDs) to model the product       tree and internal block diagrams to model the structure and interfaces       of APE and its subsystem. The APE hierarchical breakdown is based on the       product tree. It has several levels, going from the highest level into       more and more details, using decomposition of its elements.    </para>    <para annotations="html converted">      On the other hand, a complex system has much more than just one internal       structure. There are multiple views showing electrical, optical, and       mechanical elements that are interconnected, and therefore multiple       structures exist. The same components can be connected in different       views in different ways. We have used IBDs to show the electrical,       optical, and mechanical layout of APE and its components at different       levels. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___System_Structure__16_6_1_382c0508_1273340535703_584434_18443"></xref>  shows the optical layout in an abstract manner. The       connectors are stereotyped as optical, but they are elided for       readability.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___System_Structure__16_6_1_382c0508_1273340535703_584434_18443">
+<title>IBD of the APE optical layout</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="APE_Optical__15_0_bf10301_1202466071925_916245_6260.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Behavior">
+<title>Behavior</title>
+<para annotations="last-resort">        A complex system is much more than just the collection of its elements and     their structural architecture, because its behavior derives from the     collaboration of its parts. Therefore it is essential to capture the     behavior of the system to be able to understand it. We have used     activities to model the behavior of APE and its subsystems. SysML activity     diagrams can be used to show the actions taken by the system and its data     and control flow. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Behavior__16_6_1_382c0508_1273340632234_21672_18468"></xref>  shows the wave-front control of APE. It shows at     the same time the physical effects of the system (like distortion of the     wave front), as well as sensing, actuating actions, and control flows.  </para>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Behavior__16_6_1_382c0508_1273340632234_21672_18468">
+<title>Activity diagram for APE wave-front control</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="Evaluate Phasing techniques__16_6_1_382e050d_1263298346968_952924_22927.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Data">
+<title>Data</title>
+        <para annotations="html converted">      Another aspect is the information or data handled by the system. SysML       provides block definition diagrams for the definition of data, and it       provides internal block diagrams, activities, and sequence diagrams for       data usage and flow. APE uses SysML "dataTypes" to define the data of       APE and its subsystems. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Data__16_6_1_382c0508_1273340710968_550970_18493"></xref>  shows the composition structure of a       measurement and its relation to movements of the segmented mirror       ("AsmMovement"). Those data types are used to define ports in IBDs and       objects in activity diagrams.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Data__16_6_1_382c0508_1273340710968_550970_18493">
+<title>Block definition diagram of APE wave-front data</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="APEDataModel_Definition__15_0_baa02e2_1206201803603_928074_11870.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Verification_">
+<title>Verification </title>
+                  <para annotations="html converted">      For every large system, verification is an essential part of the system       acceptance in order to prove that the system meets its requirements.       SysML supports the modeling of test cases with a specific model element,       &quot;testCase&quot;. The &quot;testCase&quot; element can be used at different levels for       component integration, software integration, and system integration.       Furthermore, APE has two different test contexts: verification in the       lab and in the sky.    </para>  </sect1>
+</chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Model_Library_and_Systems_Engineering_Profile" >
+   <title>Model Library and Systems-Engineering Profile</title>
+        <para annotations="html converted">      Besides the modeling of the different aspects, the APE modeling project       provides a model library and an SE^2 profile. Data types and model       elements that are frequently used are modeled in a model library to       increase reuse. Abstract types are used as place holder for specific       building blocks. They are classified in different catalogue packages       (<xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Model_Library_and_Systems_Engineering_Profile__16_6_1_382c0508_1273337739734_463723_17409"></xref> ).    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Model_Library_and_Systems_Engineering_Profile__16_6_1_382c0508_1273337739734_463723_17409">
+<title>APE abstract types</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="PartsCatalogue_Content__15_1_baa02e2_1210308949515_149631_9235.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+                  <para annotations="html converted">      Catalogues can be easily extended by using inheritance. Furthermore, the       preliminary design of a system can initially work with an abstract type       (when the detailed requirements are yet unknown) and decide later which       specific type to use for the implementation. A generic connector gets a       different context-specific pin assignment by inheritance. For each       specific assignment a separate specialization is needed. The SE^2       profile provides the project-specific extensions to SysML: stereotypes       like &quot;objective&quot;, constraints in element usage, enumerations, and so on.    </para>  </chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges_" >
+   <title>Modeling Challenges </title>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Introduction">
+<title>Introduction</title>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks_">
+<title>Notation: Connection of Nested Blocks </title>
+        <para annotations="html converted">      <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks___16_6_1_382c0508_1273342555718_254757_19152"></xref>  shows the connection of control-system elements with telescope       elements: for example, the sensor cabinet ("sensCabinet") is connected       with the "coolantReturn" and "coolantSupply." The solid line is a nested       connector. It crosses the boundaries of the encapsulated system blocks.    </para>          <para annotations="html converted">      If the modeler would like to hide the internal structure of the       telescope in <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks___16_6_1_382c0508_1273342555718_254757_19152"></xref> , the nested connector would also be hidden.       Typically we still want to see that there is some kind of relationship       between the telescope and APE. SysML doesn't provide a presentation       option to show the link in this case.    </para>          <para annotations="html converted">      As a workaround we propose a standard port with stereotype junction that       divides the nested connector at each relevant boundary crossing in       separate connectors. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks___16_6_1_382c0508_1273342622656_280970_19181"></xref>  shows that the junction port resolves the       issue (see also <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Context___16_6_1_382c0508_1273340417671_180327_18418"></xref> ). We propose that SysML support the concept of       junction ports, which would enable tools to offer convenience functions       for nested connector modeling (we have issued this proposal to the SysML       Revision Task Force).    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks___16_6_1_382c0508_1273342555718_254757_19152">
+<title>Nested connectors</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="ObservatoryContext_NestedConnector__16_6_1_382c0508_1273343686531_940307_21619.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Notation__Connection_of_Nested_Blocks___16_6_1_382c0508_1273342622656_280970_19181">
+<title>Junction ports for nested connector</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="ObservatoryContext_Junction__16_6_1_382c0508_1273343708859_181669_22378.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Model">
+<title>Model</title>
+                  <para annotations="html converted">      SysML supports two kinds of ports, that is, interaction points between a       system block and its environment. The standard port provides or requests       services, whereas the flow port specifies the flow of items inside or       outside the system block. SysML has no explicit support of more complex       ports that combine single, reusable ports. We propose nested ports for       SysML. They allow a decomposing structure, the potential for       re-usability and individual delegation of item flows that go through       this port (see <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern___Context___16_6_1_382c0508_1273340417671_180327_18418"></xref> ). Nested ports conform to the abstract syntax of       SysML. Therefore some tool vendors already provide this important       modeling feature. SysML doesn't say anything about the semantics of       nested ports. Because we issued this proposal to the SysML Revision Task       Force, a forthcoming SysML version will include a special kind of this       concept called nested flow ports.    </para>  </sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Tool">
+<title>Tool</title>
+<para annotations="html converted">SysML has some modeling areas where creating and editing model information in a diagram is cumbersome. For example for requirements, which are often entered in a bulk, it is easier to use a table than a diagram to enter or modify the data. The same is true for relationship modeling like the allocation of behavioral elements to structural system elements. It is easier to assign the relationships in a matrix than in a diagram with lots of arrows. SysML already defines table and matrix formats. Most tools provide them as limited read-only views on the model. What we need are table and matrix views with the ability to create and modify model elements.</para></sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Methodology">
+<title>Methodology</title>
+        <para annotations="html converted">      SysML is a pure language and does not prescribe any methodology. For       example, SysML allows one to model the "allocate" relationship between       nearly any model elements. But where is this feature useful in a       specific project? How can the relationship be determined from the model?       What are the consequences of having an "allocate" relationship between       two elements? You don't find answers to these questions in the SysML       specification. While there are some books that describe methodologies       for modeling systems with SysML (Friedenthal 2008; Weilkiens 2008), our       MBSE Challenge Team has found some best practices and modeling       guidelines to complement them. Last but not least, each project needs       its own specific set of methods.    </para>  </sect1>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Modeling_Challenges___Configuration_and_Quality_Control_">
+<title>Configuration and Quality Control </title>
+<para annotations="html converted">As soon as a common project model is created and more than one person uses it, configuration control becomes a fundamental requirement. In particular, consistent linking among model elements must be ensured. Individual changes must be traceable as well as creating visual differences to follow in detail what has changed where. Due to the extensive linking, side effects (introduced by changes) can go unnoticed and corrupt the model. This can only be mitigated by establishing rigorous configuration-management practices and using tools that allow rollbacks. </para></sect1>
+</chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Experiences_from_a_New_Project___E_ELT_Telescope_Control_System" >
+   <title>Experiences from a New Project - E-ELT Telescope Control System</title>
+<para annotations="last-resort">        The European Extremely Large Telescope is a telescope with a primary     mirror of 42 m in diameter, composed of 984 hexagonal segments, and four     other mirrors with diameters ranging from 2.5 m to 6 m. <xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Experiences_from_a_New_Project___E_ELT_Telescope_Control_System__16_6_1_382c0508_1273338306687_558965_17545"></xref>  shows the     E-ELT in comparison with the Very Large Telescope and the Roman Colosseum,     which might be an indicator for its complexity.  </para>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Experiences_from_a_New_Project___E_ELT_Telescope_Control_System__16_6_1_382c0508_1273338306687_558965_17545">
+<title>Size comparison of the European Extremely Large Telescope (left), the Very Large Telescope (center) and the Roman Colosseum (right). (Image created by ESO; reprinted by permission.)</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="EELTColiseum__16_6_1_382c0508_1273338267812_447807_17520.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+        <para annotations="html converted">      The telescope consists roughly of 10,000 tons of steel and glass in a       structure the size of a big football stadium; it needs 20,000 actuators,       some of which have to be controlled to location accuracies within a       nanometer and to angular accuracies within 0.02 degrees. It requires       high-performance computation up to 700 Gflop/s, and data transfers rates       of up to 17 Gbyte/s. The control system has to deal with about 60,000       I/O points, 15 subsystems (one particular subsystem requires the       coordination of 15,000 actuators alone), and interacting, distributed       control loops with sampling rates ranging from 0.01 Hz to several kHz.    </para>    <para annotations="html converted">      The telescope control system (TCS) includes all the hardware, software,       and communication infrastructure required to control the telescope and       the dome. Many subsystems will be contracted and have to be properly       integrated. Therefore, the TCS defines for the subsystems the interfaces       and requirements as well as standards for the field electronics,       software, and hardware to be used.    </para>    <para annotations="html converted">      The common project model, where all TCS-relevant components of the       observatory are logically represented, enables the development team to    </para>    <itemizedlist>      <listitem><para annotations="html converted">        share a common, consistent view of the system, like the context in         figure 14;      </para></listitem>      <listitem><para annotations="html converted">        structure requirements, in combination with a requirements management         tool;      </para></listitem>      <listitem><para annotations="html converted">        describe the complex behavior of the system;      </para></listitem>      <listitem><para annotations="html converted">        define the architecture and detailed design;      </para></listitem>      <listitem><para annotations="html converted">        standardize meta-architecture across the various subsystems;      </para></listitem>      <listitem><para annotations="html converted">        allocate function to structure and allow full traceability; and      </para></listitem>      <listitem><para annotations="html converted">        analyze different design variants.      </para></listitem>    </itemizedlist>    <para annotations="html converted">      TCS architecture is highly data-oriented, making it well suited for       representation with SysML constructs like activities and pins, blocks       and ports, and state machines. The design of the TCS covers different       views as control, electrical, and even mechanical because components       have to be mechanically mounted.    </para>    <para annotations="html converted">      Diagrams are extracted from the model to create paper-based       documentation, as required by the project. The reporting and plug-in       facilities of the modeling tool allow the engineer to automatically       create the recursive structure as defined by the guidelines, and to make       cost estimates using a predefined parts catalogue and estimates of the       required communication infrastructure to accommodate the necessary       throughput.    </para>  <figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Experiences_from_a_New_Project___E_ELT_Telescope_Control_System__16_6_1_382c0508_1273338567828_436084_17570">
+<title>TCS context diagram</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="EELTContext__16_6_1_382c0508_1273338599562_424923_17579.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<figure annotations="figure diagram" xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Experiences_from_a_New_Project___E_ELT_Telescope_Control_System__16_6_1_382c0508_1273338755687_619548_17631">
+<title>Meta-architecture of the local control system</title>
+<mediaobject>
+<imageobject>
+<imagedata fileref="EELTLCS__16_6_1_382c0508_1273338716421_466389_17606.png" width="100%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+<para annotations="html converted">The successful application of MBSE to a project of this scale was only made possible by the existence of the guidelines produced by the SE^2 Challenge Team. We consider those guidelines, together with their accompanying examples, a precondition to allow one to focus on the content, rather than on hands-on technicalities.</para></chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__Conclusions" >
+   <title>Conclusions</title>
+                  <para annotations="html converted">      The SE^2 Challenge team used an existing, complex system to create a       comprehensive SysML model and solve common daily modeling problems. The       engineering team of the E-ELT TCS is able to successfully apply the       established guidelines, model structures, and modeling procedures to a       new large-scale system in the optical telescope domain. The results       demonstrate that SysML is an effective tool to document the complexity       of requirements, interfaces, behavior, and structure, and is       instrumental to enhance the traceability between requirements, design,       and verification and validation.    </para>    <para annotations="html converted">      A formal language and an adequately strict tool enforce structured       thinking and a detailed description of the problem at hand. This       increases the consistency and reveals undefined or unclear parts of the       problem. Some limits of SysML were reached, because it does not offer       out-of-the-box concepts for optical or electrical engineering. However,       this can be overcome by extending the language using domain-specific       profiles.    </para>    <para annotations="html converted">      The most important value in a systems-engineering project is to have a       common understanding among all stakeholders; therefore, fancy SysML       constructs should be avoided when starting up. Even if SysML is a very       good tool for communication and improving understanding, not all aspects       of systems engineering can be fully covered by modeling with SysML, and       systems engineers will still need the expressiveness and level of detail       of traditional engineering activities like numerical analysis,       simulation and prototyping to handle non-functional aspects like safety,       security, reliability, usability, and logistics.    </para>  </chapter>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__References" >
+   <title>References</title>
+<para annotations="last-resort">                  ESO (European Southern Observatory). 2009. Very large telescope     information. ESO (Web site). <emphasis role="underline">http://www.eso.org/public/astronomy/teles-instr/paranal.html</emphasis>     (accessed 3 Nov. 2009).  </para>
+<para annotations="html converted">Friedenthal, S., A. Moore, and R. Steiner. 2008. A practical guide to SysML: The systems modeling language. Burlington, MA: Elsevier/Morgan Kaufmann.</para>        <para annotations="html converted">      Gonte, F. Y. J., N. Yaitskova, P. Dierickx, R. Karban, A. Courteville,       A. Schumacher, N. Devaney et al. 2004. APE: A breadboard to evaluate new       phasing technologies for a future European Giant Optical Telescope. In       Ground-based Telescopes, ed. Jacobus M. Oschmann, Jr. (vol. 5489 of       Proceedings of SPIE [The International Society for Optical       Engineering]), 1184-1191. Bellingham, WA: SPIE.    </para>          <para annotations="html converted">      Ogren, I. 2000. On principles for model-based systems engineering.       Systems Engineering 3 (1): 38-49.    </para>                    <para annotations="html converted">      OMG (Object Management Group). 2008. OMG Systems Modeling Language (OMG       SysML): version 1.1. OMG document no. formal/08-11-02.       http://www.omg.org/spec/SysML/1.1/ (accessed 3 Nov. 2009).    </para>  <para annotations="html converted">Weilkiens, T. 2008. Systems engineering with SysML/UML: Modeling, analysis, design. Amsterdam: Morgan Kaufmann OMG Press/Elsevier.</para></chapter>
+</part>
+<part xml:id="Cookbook_for_MBSE_with_SysML__Recipes_and_best_Practices" >
+<info>
+<title>Recipes and best Practices</title>
+</info>
+<partintro><para> </para></partintro>
+<chapter xml:id="Cookbook_for_MBSE_with_SysML__Recipes_and_best_Practices__Tool_support" >
+   <title>Tool support</title>
+<sect1 xml:id="Cookbook_for_MBSE_with_SysML__Recipes_and_best_Practices__Tool_support__Templates_for_Model_Structure">
+<title>Templates for Model Structure</title>
+        <para annotations="html converted">      A getTemplate facility is supplied to act upon a package, and will       produce a number of subpackage stereotyped by the corresponding SE2       stereotypes specified in this manual.    </para>    <para annotations="html converted">      These packages cover all the aspects of system engineering       specification, e.g. Requirements, Structure, Behavior, Performance, and       several others. For each of these subpackages a content diagram (BDD)       stereotyped by &quot;se2.ContentDiagram&quot;, is created, where the user is       supposed to add further decomposition as sensible (<xref linkend="Cookbook_for_MBSE_with_SysML__MBSE_in_Telescope_Modelling__APE_Model_Structure_Pattern_"></xref> ).    </para>    <para annotations="html converted">      The diagram is intended to be used as a &quot;entry point&quot; for the package in       which it is located, with all the packages appearing in it and       containing hyperlinks for ease of navigation.    </para>    <para annotations="html converted">          </para>    <para annotations="html converted">      Most notably, the structure package is the one which is used for       recursion, where a SysML block standing for the &quot;system&quot;, and       stereotyped by &quot;se2.physical&quot; is created and added to the product tree       Diagram. The block also contains 4 different IBD, for Electrical,       Mechanical,Optical and Software (stereotyped with the respective SE2       stereotypes).    </para>    <para annotations="html converted">      The user is supposed to add packages which corresponds to the various       Part Properties, and reapply the &quot;get Template for System Element&quot;       facility to those packages.    </para>    <para annotations="html converted">      An example of the its application for a &quot;B&quot; element can be seen in       <xref linkend="Cookbook_for_MBSE_with_SysML__Recipes_and_best_Practices__Tool_support__Templates_for_Model_Structure__17_0_4_4135058a_1334314154669_197766_23186"></xref> .    </para>    <para annotations="html converted">      Also, for the requirements package an element of type &quot;Requirement&quot; is       added (the Requirement ID counter is unique throughout the model) and a       Requirement diagram containing it.    </para>  <figure annotations="figureimage" xml:id="Cookbook_for_MBSE_with_SysML__Recipes_and_best_Practices__Tool_support__Templates_for_Model_Structure__17_0_4_4135058a_1334314154669_197766_23186">
+<title>Example Structure for package B</title><mediaobject>
+<imageobject>
+<imagedata fileref="ExampleStructure__17_0_4_4135058a_1334314094584_786562_23134.png" width="40%" scalefit="1" align="center"/>
+</imageobject>
+</mediaobject>
+</figure>
+</sect1>
+</chapter>
+</part>
+</book>
